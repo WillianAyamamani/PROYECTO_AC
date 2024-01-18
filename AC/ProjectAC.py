@@ -6,7 +6,7 @@ import os
 import cv2
 
 #KEY API
-client = OpenAI(api_key = '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')
+client = OpenAI(api_key ='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')
 
 #CONVERT
 convert = reconoce.Recognizer()
@@ -23,7 +23,7 @@ def STAU (ingreso):
 def CUE (quetion):
     answer = client.chat.completions.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": "Hello world"}]
+        messages=[{"role": "user", "content": quetion}]
     )
     #answer = openai.Completion.create(
     #        engine = "text-davinci-002",
@@ -31,7 +31,7 @@ def CUE (quetion):
     #        max_tokens = 100,
     #        temperature = 0.6
     #        )
-    return answer
+    return answer.choices[0].message.content
     
 #RECONOCE LA VOZ
 def VOZ (tipo):
