@@ -79,8 +79,12 @@ while matriz.libres:
     largo = len(palabra)
     matriz.put(palabra)
 
+#MUESTRA EN TERMINAL
+print(matriz)
+print(matriz.palabras)
+
 pygame.init()
-width, height = 800, 600
+width, height = 700, 700
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Sopa de Letras")
 
@@ -95,6 +99,15 @@ board_x = (width - board_width) // 2
 board_y = (height - board_height) // 2
 
 def draw_board():
+    # Mostrar números de fila en el borde superior
+    for columna in range(matriz.dimension):
+        rect = pygame.Rect(board_x + columna * cell_size, board_y - cell_size, cell_size, cell_size)
+        font = pygame.font.Font(None, 24)
+        text = font.render(str(columna), True, BLACK)
+        text_rect = text.get_rect(center=rect.center)
+        screen.blit(text, text_rect)
+
+    # Mostrar números de columna en el borde izquierdo
     for fila in range(matriz.dimension):
         for columna in range(matriz.dimension):
             letra = matriz[Cursor(fila, columna)]
@@ -105,6 +118,13 @@ def draw_board():
             text = font.render(letra, True, BLACK)
             text_rect = text.get_rect(center=rect.center)
             screen.blit(text, text_rect)
+
+    for fila in range(matriz.dimension):
+        rect = pygame.Rect(board_x - cell_size, board_y + fila * cell_size, cell_size, cell_size)
+        font = pygame.font.Font(None, 24)
+        text = font.render(str(fila), True, BLACK)
+        text_rect = text.get_rect(center=rect.center)
+        screen.blit(text, text_rect)
 
 running = True
 while running:
