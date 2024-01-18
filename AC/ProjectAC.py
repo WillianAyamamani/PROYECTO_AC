@@ -3,6 +3,7 @@ import openai
 import speech_recognition as reconoce
 import json
 import os
+import cv2
 
 #KEY API
 openai.api_key = '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'
@@ -20,12 +21,16 @@ def STAU (ingreso):
 
 #PETICIONES DIFERENTES
 def CUE (quetion):
-    answer = openai.Completion.create(
-            engine = "text-davinci-002",
-            prompt = quetion,
-            max_tokens = 100,
-            temperature = 0.6
-            )
+    answer = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": "Hello world"}]
+    )
+    #answer = openai.Completion.create(
+    #        engine = "text-davinci-002",
+    #        prompt = quetion,
+    #        max_tokens = 100,
+    #        temperature = 0.6
+    #        )
     return answer['choices'][0]['text']
     
 #RECONOCE LA VOZ
