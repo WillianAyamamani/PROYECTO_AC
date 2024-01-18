@@ -67,3 +67,6 @@ if __name__ == "__main__":
     print ('Usted elijió: ', eleccion)
     if eleccion == 'Uno':
         os.system('python sopa.py')    
+
+    #DESPEDIDA
+    #STAU(datos['later'])
