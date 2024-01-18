@@ -6,7 +6,7 @@ import os
 import cv2
 
 #KEY API
-client = OpenAI(api_key ='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')
+client = OpenAI(api_key ='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')
 
 #CONVERT
 convert = reconoce.Recognizer()
@@ -60,7 +60,7 @@ with open('DATA.json', 'r') as archivo:
 
 #MAIN: FUNCION PRINCIPAL
 if __name__ == "__main__":
-    print(CUE('hola'))	
+    print(CUE('¿Cuando se descubrio america?'))	
     #SALUDO
     #STAU(datos['welcome'])
     
