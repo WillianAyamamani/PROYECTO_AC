@@ -2,6 +2,7 @@ import pyttsx3 as con
 import openai
 import speech_recognition as reconoce
 import json
+import os
 
 #KEY API
 openai.api_key = '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'
@@ -56,3 +57,6 @@ if __name__ == "__main__":
     #STAU(datos['welcome'])
     nombre = VOZ(True)
     print ('tu nombre es ', nombre)
+    
+    if nombre == 'Uno':
+        os.system('python sopa.py')    
