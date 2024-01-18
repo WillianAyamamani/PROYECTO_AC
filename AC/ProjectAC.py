@@ -13,6 +13,7 @@ convert = reconoce.Recognizer()
 def STAU (ingreso):
     palabra = con.init()
     palabra.setProperty('rate',150)
+    palabra.setProperty('voice', 'Spanish (Latin America)')
     palabra.say(ingreso)
     palabra.runAndWait()
 
@@ -30,7 +31,7 @@ def CUE (quetion):
 def VOZ (valor):
     with reconoce.Microphone() as sr:
         if(valor):
-            STAU ('PORFAVOR INGRESE SU PETICION')
+            STAU ('PORFAVOR INGRESE SU PETICIÓN')
         else:
             STAU ('POR FAVOR COMENTE SU RESPUESTA')
         song = convert.listen(sr)
@@ -38,7 +39,7 @@ def VOZ (valor):
     
     try:
         text_song = convert.recognize_google(song)
-        STAU('SU PETICION SE HA TRANSCRITO EN LA TERMINAL')
+        STAU('SU PETICIÓN SE HA TRANSCRITO EN LA TERMINAL')
         print ("SU PETICION: ", text_song)
         return text_song
     except reconoce.UnknownValueError:
@@ -52,6 +53,6 @@ with open('DATA.json', 'r') as archivo:
 
 #MAIN: FUNCION PRINCIPAL
 if __name__ == "__main__":
-    STAU(datos['welcome'])
-    nombre = VOZ(False)
+    #STAU(datos['welcome'])
+    nombre = VOZ(True)
     print ('tu nombre es ', nombre)
