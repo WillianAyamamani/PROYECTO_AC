@@ -6,7 +6,7 @@ import os
 import cv2
 
 #KEY API
-client = OpenAI(api_key ='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')
+client = OpenAI(api_key ='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')
 
 #CONVERT
 convert = reconoce.Recognizer()
@@ -65,14 +65,14 @@ if __name__ == "__main__":
     #STAU(datos['welcome'])
     
     #PIDE NOMBRE
-    #nombre = VOZ('nombre')
-    #print ('Tu nombre es: ', nombre)
+    nombre = VOZ('nombre')
+    print ('Tu nombre es: ', nombre)
     
     #PREGUNTA LA ELECCION
-    #eleccion = VOZ('elección')
-    #print ('Usted elijió: ', eleccion)
-    #if eleccion == 'Uno':
-    #    os.system('python sopa.py')    
+    eleccion = VOZ('elección')
+    print ('Usted elijió: ', eleccion)
+    if eleccion == 'Uno':
+        os.system('python sopa.py')    
 
     #DESPEDIDA
     #STAU(datos['later'])
