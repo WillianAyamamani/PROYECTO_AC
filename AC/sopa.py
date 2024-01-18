@@ -67,7 +67,7 @@ class Matrix:
             linea += f"{i:2d} {' '.join(self.matriz[i].tolist())} {i:2d}\n"
         return linea + regla
 
-
+import pygame
 import numpy as np
 import random
 
@@ -79,5 +79,41 @@ while matriz.libres:
     largo = len(palabra)
     matriz.put(palabra)
 
-print(matriz)
-print(matriz.palabras)
+pygame.init()
+width, height = 800, 600
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Sopa de Letras")
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+
+cell_size = 40
+margin = 10
+board_width = matriz.dimension * cell_size
+board_height = matriz.dimension * cell_size
+board_x = (width - board_width) // 2
+board_y = (height - board_height) // 2
+
+def draw_board():
+    for fila in range(matriz.dimension):
+        for columna in range(matriz.dimension):
+            letra = matriz[Cursor(fila, columna)]
+            rect = pygame.Rect(board_x + columna * cell_size, board_y + fila * cell_size, cell_size, cell_size)
+            pygame.draw.rect(screen, WHITE, rect)
+            pygame.draw.rect(screen, BLACK, rect, 1)
+            font = pygame.font.Font(None, 24)
+            text = font.render(letra, True, BLACK)
+            text_rect = text.get_rect(center=rect.center)
+            screen.blit(text, text_rect)
+
+running = True
+while running:
+    screen.fill(WHITE)
+    draw_board()
+    pygame.display.flip()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+pygame.quit()
