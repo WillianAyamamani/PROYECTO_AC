@@ -29,19 +29,20 @@ def CUE (quetion):
     return answer['choices'][0]['text']
     
 #RECONOCE LA VOZ
-def VOZ (valor):
+def VOZ (tipo):
     with reconoce.Microphone() as sr:
-        if(valor):
-            STAU ('PORFAVOR INGRESE SU PETICIÓN')
-        else:
-            STAU ('POR FAVOR COMENTE SU RESPUESTA')
+        #if(valor):
+        #    STAU ('PORFAVOR INGRESE SU PETICIÓN')
+        #else:
+        #    STAU ('POR FAVOR COMENTE SU RESPUESTA')
+        STAU ('PORFAVOR INGRESE SU ' + tipo)
         song = convert.listen(sr)
         STAU ('OKEY EN PROCESO')
     
     try:
         text_song = convert.recognize_google(song)
-        STAU('SU PETICIÓN SE HA TRANSCRITO EN LA TERMINAL')
-        print ("SU PETICION: ", text_song)
+        STAU('SU '+ tipo +' SE HA TRANSCRITO EN LA TERMINAL')
+        print ('SU '+ tipo +': ', text_song)
         return text_song
     except reconoce.UnknownValueError:
         STAU('No se reconoce correctamente su peticion por audio')
@@ -54,9 +55,15 @@ with open('DATA.json', 'r') as archivo:
 
 #MAIN: FUNCION PRINCIPAL
 if __name__ == "__main__":
+    #SALUDO
     #STAU(datos['welcome'])
-    nombre = VOZ(True)
-    print ('tu nombre es ', nombre)
     
-    if nombre == 'Uno':
+    #PIDE NOMBRE
+    nombre = VOZ('nombre')
+    print ('Tu nombre es: ', nombre)
+    
+    #PREGUNTA LA ELECCION
+    eleccion = VOZ('elección')
+    print ('Usted elijió: ', eleccion)
+    if eleccion == 'Uno':
         os.system('python sopa.py')    
