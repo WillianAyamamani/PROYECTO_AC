@@ -1,12 +1,12 @@
 import pyttsx3 as con
-import openai
+from openai import OpenAI
 import speech_recognition as reconoce
 import json
 import os
 import cv2
 
 #KEY API
-openai.api_key = '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'
+client = OpenAI(api_key = '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')
 
 #CONVERT
 convert = reconoce.Recognizer()
@@ -31,7 +31,7 @@ def CUE (quetion):
     #        max_tokens = 100,
     #        temperature = 0.6
     #        )
-    return answer['choices'][0]['text']
+    return answer
     
 #RECONOCE LA VOZ
 def VOZ (tipo):
@@ -60,18 +60,19 @@ with open('DATA.json', 'r') as archivo:
 
 #MAIN: FUNCION PRINCIPAL
 if __name__ == "__main__":
+    print(CUE('hola'))	
     #SALUDO
     #STAU(datos['welcome'])
     
     #PIDE NOMBRE
-    nombre = VOZ('nombre')
-    print ('Tu nombre es: ', nombre)
+    #nombre = VOZ('nombre')
+    #print ('Tu nombre es: ', nombre)
     
     #PREGUNTA LA ELECCION
-    eleccion = VOZ('elección')
-    print ('Usted elijió: ', eleccion)
-    if eleccion == 'Uno':
-        os.system('python sopa.py')    
+    #eleccion = VOZ('elección')
+    #print ('Usted elijió: ', eleccion)
+    #if eleccion == 'Uno':
+    #    os.system('python sopa.py')    
 
     #DESPEDIDA
     #STAU(datos['later'])
