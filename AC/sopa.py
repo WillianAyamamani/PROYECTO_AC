@@ -101,7 +101,7 @@ cell_size = 55
 margin = 10
 board_width = matriz.dimension * cell_size
 board_height = matriz.dimension * cell_size
-board_x = (width - board_width) // 2
+board_x = (width - board_width) // 2 - 100
 board_y = (height - board_height) // 2
 
 # Inicializar la matriz de botones seleccionados
@@ -109,8 +109,21 @@ boton_seleccionado = [[False] * TAM for _ in range(TAM)]
 boton_encontrado = [[False] * TAM for _ in range(TAM)]
 
 mensaje_mostrado = " "
+palabras_mostradas = "Palabras aquí"
 tiempo_transcurrido = 0
 max_tiempo = 300
+
+
+def texto_palabras():
+    txt_palabras = ""
+    
+    for palabra in matriz.palabras:
+        x, y, avanX, avanY, palabra_texto = palabra
+        txt_palabras += palabra_texto + "\n"
+        
+    txt_palabras += "Encuentra las palabras:"
+
+    return txt_palabras
 
 
 def comprobar_palabras(botones_seleccionados):
@@ -168,6 +181,7 @@ def aceptar_palabra(botones_seleccionados):
 
 def draw_board():
     global mensaje_mostrado
+    global palabras_mostradas
     
     # Mostrar temporizador en la parte superior izquierda
     tiempo_restante = int(max_tiempo - tiempo_transcurrido)
@@ -217,7 +231,7 @@ def draw_board():
     screen.blit(text, text_rect)
 
     # Dibujar el apartado de texto editable
-    texto_rect = pygame.Rect(screen.get_width() // 2 - 300, screen.get_height() - 40, 600, 30)
+    texto_rect = pygame.Rect(screen.get_width() // 2 - 300, screen.get_height() - 50, 600, 30)
     pygame.draw.rect(screen, WHITE, texto_rect)
     pygame.draw.rect(screen, BLACK, texto_rect, 1)
     font = pygame.font.Font(None, 24)
@@ -225,6 +239,19 @@ def draw_board():
     text_rect = text.get_rect(center=texto_rect.center)
     screen.blit(text, text_rect)
 
+    # Dibujar el apartado de las palabra
+    texto_rect = pygame.Rect(screen.get_width() - 300, screen.get_height() // 2 - 250, 260, 500)
+    pygame.draw.rect(screen, WHITE, texto_rect)
+    pygame.draw.rect(screen, BLACK, texto_rect, 1)
+    font = pygame.font.Font(None, 24)
+    line_height = font.get_linesize() + 10
+    # Dibujar cada línea de palabra
+    palabras_lineas = palabras_mostradas.splitlines()
+    for i, linea in enumerate(palabras_lineas):
+        text = font.render(linea, True, BLACK)
+        text_rect = text.get_rect(center=(texto_rect.centerx, texto_rect.centery - i * line_height + line_height * len(palabras_lineas) // 2))
+        screen.blit(text, text_rect)
+    
     # Obtener eventos de pygame
     events = pygame.event.get()
     for event in events:
@@ -265,6 +292,7 @@ def draw_board():
         screen.blit(text, text_rect)
 
 
+palabras_mostradas = texto_palabras()
 running = True
 while running:
     screen.fill(WHITE)
