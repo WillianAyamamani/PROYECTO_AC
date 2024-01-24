@@ -90,6 +90,9 @@ pygame.display.set_caption("Sopa de Letras")
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
 
 cell_size = 40
 margin = 10
@@ -97,6 +100,9 @@ board_width = matriz.dimension * cell_size
 board_height = matriz.dimension * cell_size
 board_x = (width - board_width) // 2
 board_y = (height - board_height) // 2
+
+# Inicializar la matriz de botones seleccionados
+boton_seleccionado = [[False] * TAM for _ in range(TAM)]
 
 def draw_board():
     # Mostrar números de fila en el borde superior
@@ -114,7 +120,7 @@ def draw_board():
             rect = pygame.Rect(board_x + columna * cell_size, board_y + fila * cell_size, cell_size, cell_size)
             
             # Crear un botón interactivo
-            button = pygame.draw.rect(screen, WHITE, rect)
+            button = pygame.draw.rect(screen, BLUE if boton_seleccionado[fila][columna] else WHITE, rect)
             pygame.draw.rect(screen, BLACK, rect, 1)
             
             font = pygame.font.Font(None, 24)
@@ -131,9 +137,11 @@ def draw_board():
                 for columna in range(matriz.dimension):
                     rect = pygame.Rect(board_x + columna * cell_size, board_y + fila * cell_size, cell_size, cell_size)
                     if rect.collidepoint(pygame.mouse.get_pos()):
-                        # Realizar alguna acción cuando se hace clic en el botón
-                        # Por ejemplo, imprimir las coordenadas del botón
+                        # Cambiar el estado del botón seleccionado
+                        boton_seleccionado[fila][columna] = not boton_seleccionado[fila][columna]
+                        # Imprimir las coordenadas del botón
                         print("Botón en la fila", fila, "y columna", columna, "hizo clic.")
+
 
     for fila in range(matriz.dimension):
         rect = pygame.Rect(board_x - cell_size, board_y + fila * cell_size, cell_size, cell_size)
