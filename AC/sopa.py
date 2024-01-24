@@ -110,15 +110,17 @@ boton_encontrado = [[False] * TAM for _ in range(TAM)]
 
 mensaje_mostrado = " "
 palabras_mostradas = "Palabras aquí"
+palabras_buscadas = []
+palabra_encontrada = ""
 tiempo_transcurrido = 0
-max_tiempo = 300
+max_tiempo = 180
 
 
 def texto_palabras():
     txt_palabras = ""
     
-    for palabra in matriz.palabras:
-        x, y, avanX, avanY, palabra_texto = palabra
+    for palabra in palabras_buscadas:
+        palabra_texto = palabra
         txt_palabras += palabra_texto + "\n"
         
     txt_palabras += "Encuentra las palabras:"
@@ -147,6 +149,10 @@ def comprobar_palabras(botones_seleccionados):
 
 
 def aceptar_palabra(botones_seleccionados):
+    global palabras_buscadas
+    global palabras_mostradas
+    global palabra_encontrada
+    
     boton1 = botones_seleccionados[0]
     boton2 = botones_seleccionados[1]
     x1 = boton1[0]
@@ -156,14 +162,18 @@ def aceptar_palabra(botones_seleccionados):
     
     boton_encontrado[x1][y1] = True
     boton_encontrado[x2][y2] = True
+
+    palabra_encontrada = matriz[Cursor(x1, y1)]
     
     if x1 == x2:
         for y in range(y1+1, y2):
             boton_encontrado[x1][y] = True
+            palabra_encontrada += matriz[Cursor(x1, y)]
             
     elif y1 == y2:
         for x in range(x1+1, x2):
             boton_encontrado[x][y1] = True
+            palabra_encontrada += matriz[Cursor(x, y1)]
     
     elif abs(x2 - x1) == abs(y2 - y1):
         dx = 1 if x2 > x1 else -1
@@ -172,11 +182,25 @@ def aceptar_palabra(botones_seleccionados):
         y = y1 + dy
         while x != x2:
             boton_encontrado[x][y] = True
+            palabra_encontrada += matriz[Cursor(x, y)]
             x += dx
             y += dy
 
+    palabra_encontrada += matriz[Cursor(x2, y2)]
+    
     boton_seleccionado[x1][y1] = False
     boton_seleccionado[x2][y2] = False
+    
+    print(palabra_encontrada)
+    if palabra_encontrada in palabras_buscadas:
+        palabras_buscadas.remove(palabra_encontrada)
+    else:
+        palabra_encontrada = palabra_encontrada[::-1]
+        if palabra_encontrada in palabras_buscadas:
+            palabras_buscadas.remove(palabra_encontrada)
+    palabras_mostradas = texto_palabras()
+
+    return palabra_encontrada
 
 
 def draw_board():
@@ -277,8 +301,7 @@ def draw_board():
                 
                 if len(botones_seleccionados) == 2:
                     if comprobar_palabras(botones_seleccionados):
-                        mensaje_mostrado = "Encontró una palabra"
-                        aceptar_palabra(botones_seleccionados)
+                        mensaje_mostrado = "Encontró una palabra" + aceptar_palabra(botones_seleccionados)
                     else:
                         mensaje_mostrado = "Es incorrecto, intente de nuevo"                        
                 else:
@@ -292,7 +315,11 @@ def draw_board():
         screen.blit(text, text_rect)
 
 
+draw_board()
+for palabra in matriz.palabras:
+    palabras_buscadas.append(palabra[4])
 palabras_mostradas = texto_palabras()
+
 running = True
 while running:
     screen.fill(WHITE)
