@@ -89,6 +89,7 @@ pygame.init()
 width, height = 1250, 750
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Sopa de Letras")
+clock = pygame.time.Clock()
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -108,6 +109,8 @@ boton_seleccionado = [[False] * TAM for _ in range(TAM)]
 boton_encontrado = [[False] * TAM for _ in range(TAM)]
 
 mensaje_mostrado = " "
+tiempo_transcurrido = 0
+max_tiempo = 300
 
 
 def comprobar_palabras(botones_seleccionados):
@@ -165,6 +168,18 @@ def aceptar_palabra(botones_seleccionados):
 
 def draw_board():
     global mensaje_mostrado
+    
+    # Mostrar temporizador en la parte superior izquierda
+    tiempo_restante = int(max_tiempo - tiempo_transcurrido)
+    tiempo_restante = max(0, tiempo_restante)
+    tiempo_texto = f"Tiempo: {tiempo_restante} s"
+    tiempo_rect = pygame.Rect(10, 10, 200, 30)
+    pygame.draw.rect(screen, WHITE, tiempo_rect)
+    pygame.draw.rect(screen, BLACK, tiempo_rect, 1)
+    font = pygame.font.Font(None, 24)
+    text = font.render(tiempo_texto, True, BLACK)
+    text_rect = text.get_rect(center=tiempo_rect.center)
+    screen.blit(text, text_rect)
 
     # Mostrar números de fila en el borde superior
     for columna in range(matriz.dimension):
@@ -253,6 +268,7 @@ def draw_board():
 running = True
 while running:
     screen.fill(WHITE)
+    tiempo_transcurrido += clock.tick(60) / 1000
     draw_board()
     pygame.display.flip()
 
