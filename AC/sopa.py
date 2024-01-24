@@ -108,7 +108,7 @@ board_y = (height - board_height) // 2
 boton_seleccionado = [[False] * TAM for _ in range(TAM)]
 boton_encontrado = [[False] * TAM for _ in range(TAM)]
 
-mensaje_mostrado = " "
+mensaje_mostrado = "¡Tu puedes!"
 palabras_mostradas = "Palabras aquí"
 palabras_buscadas = []
 palabra_encontrada = ""
@@ -206,6 +206,7 @@ def aceptar_palabra(botones_seleccionados):
 def draw_board():
     global mensaje_mostrado
     global palabras_mostradas
+    global palabras_restantes
     
     # Mostrar temporizador en la parte superior izquierda
     tiempo_restante = int(max_tiempo - tiempo_transcurrido)
@@ -217,6 +218,17 @@ def draw_board():
     font = pygame.font.Font(None, 24)
     text = font.render(tiempo_texto, True, BLACK)
     text_rect = text.get_rect(center=tiempo_rect.center)
+    screen.blit(text, text_rect)
+    
+    # Mostrar numero de palabras restantes en la parte superior derecha
+    palabras_restantes = len(palabras_buscadas)
+    palabras_restantes_texto = f"Quedan {palabras_restantes} palabras"
+    palabras_restantes_rect = pygame.Rect(screen.get_width() - 240, 10, 200, 30)
+    pygame.draw.rect(screen, WHITE, palabras_restantes_rect)
+    pygame.draw.rect(screen, BLACK, palabras_restantes_rect, 1)
+    font = pygame.font.Font(None, 24)
+    text = font.render(palabras_restantes_texto, True, BLACK)
+    text_rect = text.get_rect(center=palabras_restantes_rect.center)
     screen.blit(text, text_rect)
 
     # Mostrar números de fila en el borde superior
@@ -301,7 +313,7 @@ def draw_board():
                 
                 if len(botones_seleccionados) == 2:
                     if comprobar_palabras(botones_seleccionados):
-                        mensaje_mostrado = "Encontró una palabra" + aceptar_palabra(botones_seleccionados)
+                        mensaje_mostrado = "Encontró la palabra " + aceptar_palabra(botones_seleccionados)
                     else:
                         mensaje_mostrado = "Es incorrecto, intente de nuevo"                        
                 else:
@@ -315,13 +327,13 @@ def draw_board():
         screen.blit(text, text_rect)
 
 
-draw_board()
 for palabra in matriz.palabras:
     palabras_buscadas.append(palabra[4])
 palabras_mostradas = texto_palabras()
+palabras_restantes = 1
 
 running = True
-while running:
+while (running and palabras_restantes > 0):
     screen.fill(WHITE)
     tiempo_transcurrido += clock.tick(60) / 1000
     draw_board()
