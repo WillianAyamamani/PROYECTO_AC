@@ -17,6 +17,7 @@ class Cursor:
     def __str__(self):
         return f"[{self.fila} {self.avanX}, {self.columna} {self.avanY}]"
 
+
 class Matrix:
     def __init__(self, dimension):
         valores = [' '] * dimension * dimension
@@ -67,6 +68,7 @@ class Matrix:
             linea += f"{i:2d} {' '.join(self.matriz[i].tolist())} {i:2d}\n"
         return linea + regla
 
+
 import pygame
 import numpy as np
 import random
@@ -107,6 +109,7 @@ boton_encontrado = [[False] * TAM for _ in range(TAM)]
 
 mensaje_mostrado = " "
 
+
 def comprobar_palabras(botones_seleccionados):
     encontrado = False
     for palabra in matriz.palabras:
@@ -125,6 +128,40 @@ def comprobar_palabras(botones_seleccionados):
             encontrado = True        
 
     return encontrado
+
+
+def aceptar_palabra(botones_seleccionados):
+    boton1 = botones_seleccionados[0]
+    boton2 = botones_seleccionados[1]
+    x1 = boton1[0]
+    y1 = boton1[1]
+    x2 = boton2[0]
+    y2 = boton2[1]
+    
+    boton_encontrado[x1][y1] = True
+    boton_encontrado[x2][y2] = True
+    
+    if x1 == x2:
+        for y in range(y1+1, y2):
+            boton_encontrado[x1][y] = True
+            
+    elif y1 == y2:
+        for x in range(x1+1, x2):
+            boton_encontrado[x][y1] = True
+    
+    elif abs(x2 - x1) == abs(y2 - y1):
+        dx = 1 if x2 > x1 else -1
+        dy = 1 if y2 > y1 else -1
+        x = x1 + dx
+        y = y1 + dy
+        while x != x2:
+            boton_encontrado[x][y] = True
+            x += dx
+            y += dy
+
+    boton_seleccionado[x1][y1] = False
+    boton_seleccionado[x2][y2] = False
+
 
 def draw_board():
     global mensaje_mostrado
@@ -199,6 +236,7 @@ def draw_board():
                 if len(botones_seleccionados) == 2:
                     if comprobar_palabras(botones_seleccionados):
                         mensaje_mostrado = "Encontró una palabra"
+                        aceptar_palabra(botones_seleccionados)
                     else:
                         mensaje_mostrado = "Es incorrecto, intente de nuevo"                        
                 else:
@@ -210,6 +248,7 @@ def draw_board():
         text = font.render(str(fila), True, BLACK)
         text_rect = text.get_rect(center=rect.center)
         screen.blit(text, text_rect)
+
 
 running = True
 while running:
