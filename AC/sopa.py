@@ -112,12 +112,28 @@ def draw_board():
         for columna in range(matriz.dimension):
             letra = matriz[Cursor(fila, columna)]
             rect = pygame.Rect(board_x + columna * cell_size, board_y + fila * cell_size, cell_size, cell_size)
-            pygame.draw.rect(screen, WHITE, rect)
+            
+            # Crear un botón interactivo
+            button = pygame.draw.rect(screen, WHITE, rect)
             pygame.draw.rect(screen, BLACK, rect, 1)
+            
             font = pygame.font.Font(None, 24)
             text = font.render(letra, True, BLACK)
             text_rect = text.get_rect(center=rect.center)
             screen.blit(text, text_rect)
+
+    # Obtener eventos de pygame
+    events = pygame.event.get()
+    for event in events:
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            # Verificar si se hizo clic en un botón
+            for fila in range(matriz.dimension):
+                for columna in range(matriz.dimension):
+                    rect = pygame.Rect(board_x + columna * cell_size, board_y + fila * cell_size, cell_size, cell_size)
+                    if rect.collidepoint(pygame.mouse.get_pos()):
+                        # Realizar alguna acción cuando se hace clic en el botón
+                        # Por ejemplo, imprimir las coordenadas del botón
+                        print("Botón en la fila", fila, "y columna", columna, "hizo clic.")
 
     for fila in range(matriz.dimension):
         rect = pygame.Rect(board_x - cell_size, board_y + fila * cell_size, cell_size, cell_size)
