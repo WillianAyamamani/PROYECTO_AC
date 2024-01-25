@@ -28,34 +28,33 @@ class detectormanos():
         xlista = []
         ylista = []
         bbox = []
-        self.list = []
+        self.lista = []
         if self.resultados.multi_hand_landmarks:
             miMano = self.resultados.multi_hand_landmarks[ManoNum]
             for id, lm in enumerate(miMano.landmark):
                 alto, ancho, c  = frame.shape
                 cx, cy = int(lm.x*ancho), int(lm.y * alto)
-                xlist.append(cx)
-                ylist.append(cy)
-                self.list.append([id,cx,cy])
+                xlista.append(cx)
+                ylista.append(cy)
+                self.lista.append([id,cx,cy])
                 if dibujar:
                     cv2.circle(frame, (cx,cy), 5, (0,0,0), cv2.FILLED)
 
-            xmin, xmax = min(xlist), max(xlist)
-            ymin, ymax = min(ylist), max(ylist)
+            xmin, xmax = min(xlista), max(xlista)
+            ymin, ymax = min(ylista), max(ylista)
             bbox = xmin, ymin, xmax, xmax
             if dibujar:
                 cv2.rectangle(frame,(xmin - 20,ymin - 20), (xmax + 20, ymax + 20), (0,255,0), 2)
-        return self.list, bbox
-
+        return self.lista, bbox
     def dedosarriba (self):
         dedos = []
-        if self.list[self.tip[0]][1] > self.list[self.tip[0]-1][1]:
+        if self.lista[self.tip[0]][1] > self.lista[self.tip[0]-1][1]:
             dedos.append(1)
         else:
             dedos.append(0)
 
         for id in range (1,5):
-            if self.list[self.tip[id]][2] < self.list[self.tip[id]-2][2]:
+            if self.lista[self.tip[id]][2] < self.lista[self.tip[id]-2][2]:
                 dedos.append(1)
             else:
                 dedos.append(0)
@@ -63,8 +62,8 @@ class detectormanos():
         return dedos
     
     def distancia(self, p1, p2, frame, dibujar = True, r = 15, t = 3):
-        x1, y1 = self.list[p1][1:]
-        x2, y2 = self.list[p2][1:]
+        x1, y1 = self.lista[p1][1:]
+        x2, y2 = self.lista[p2][1:]
         cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
         if dibujar:
             cv2.line(frame, (x1, y1), (x2, y2), (0,0,255), t)
@@ -86,9 +85,9 @@ class detectormanos():
         while True:
             ret, frame = cap.read()
             frame = detector.encontrarmanos(frame)
-            list, bbox = detector.encontrarposicion(frame)
-            if len(list) != 0:
-                print (list[4])
+            lista, bbox = detector.encontrarposicion(frame)
+            if len(lista) != 0:
+                print (lista[4])
             ctiempo = time.time()
             fps = 1 / (ctiempo - ptiempo)
             ptiempo = ctiempo
