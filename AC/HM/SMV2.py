@@ -4,7 +4,7 @@ import mediapipe as mp
 import time
 
 class detectormanos():
-    def __init__(self, node=False, maxManos = 2, Confdeteccion = 0.5, Confsequi = 0.5):
+    def __init__(self, node=False, maxManos = 2, Confdeteccion = 1, Confsequi = 0.5):
         self.mode = node
         self.maxManos = maxManos
         self.Confdeteccion = Confdeteccion
@@ -25,8 +25,8 @@ class detectormanos():
                     self.dibujo.draw_landmarks(frame, mano, self.mpmanos.HAND_CONNECTIONS)
         return frame
     def encontrarposicion(self, frame, ManoNum = 0, dibujar = True):
-        xlist = []
-        ylist = []
+        xlista = []
+        ylista = []
         bbox = []
         self.lista = []
         if self.resultados.multi_hand_landmarks:
@@ -44,7 +44,7 @@ class detectormanos():
             ymin, ymax = min(ylista), max(ylista)
             bbox = xmin, ymin, xmax, xmax
             if dibujar:
-                cv2.rectagule(frame,(xmin - 20,ymin - 20), (xmax + 20, ymax + 20), (0,255,0), 2)
+                cv2.rectangle(frame,(xmin - 20,ymin - 20), (xmax + 20, ymax + 20), (0,255,0), 2)
         return self.lista, bbox
     def dedosarriba (self):
         dedos = []
