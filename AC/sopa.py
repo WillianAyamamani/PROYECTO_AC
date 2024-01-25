@@ -116,7 +116,7 @@ palabras_mostradas = "Palabras aquí"
 palabras_buscadas = []
 palabra_encontrada = ""
 tiempo_transcurrido = 0
-max_tiempo = 10
+max_tiempo = 100
 
 
 def texto_palabras():
@@ -223,7 +223,7 @@ def draw_mensaje(terminado):
 
     # Dibujar el apartado con las estadisticas mostradas
     if (terminado):
-        estadisticas = "Usted tomó " + str(max_tiempo - tiempo_transcurrido) + " en terminar."
+        estadisticas = "Usted tomó " + str(round(max_tiempo - tiempo_transcurrido)) + " segundos en terminar."
     else:
         estadisticas = "Le faltaron encontrar " + str(palabras_restantes) + " palabras."
     texto_rect = pygame.Rect(screen.get_width() // 2 - 250, screen.get_height() // 2 - 15 + 40, 500, 30)
