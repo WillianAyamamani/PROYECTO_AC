@@ -205,13 +205,31 @@ def aceptar_palabra(botones_seleccionados):
     return palabra_encontrada
 
 
-def draw_mensaje(mensaje):
+def draw_mensaje(terminado):
+    if (terminado):
+        mensaje = "Felicidades, terminó con todas las palabras."
+    else:
+        mensaje = "Lo lamento, se acabó el tiempo."
+
     # Dibujar el apartado del mensaje final
-    texto_rect = pygame.Rect(screen.get_width() // 2 - 300, screen.get_height() // 2 - 200, 600, 400)
+    texto_rect = pygame.Rect(screen.get_width() // 2 - 300, screen.get_height() // 2 - 200 - 20, 600, 400)
     pygame.draw.rect(screen, WHITE, texto_rect)
     pygame.draw.rect(screen, BLACK, texto_rect, 1)
     font = pygame.font.Font(None, 36)
     text = font.render(mensaje, True, BLACK)
+    text_rect = text.get_rect(center=texto_rect.center)
+    screen.blit(text, text_rect)
+
+    # Dibujar el apartado con las estadisticas mostradas
+    if (terminado):
+        estadisticas = "Usted tomó " + str(max_tiempo - tiempo_transcurrido) + " en terminar."
+    else:
+        estadisticas = "Le faltaron encontrar " + str(palabras_restantes) + " palabras."
+    texto_rect = pygame.Rect(screen.get_width() // 2 - 250, screen.get_height() // 2 - 15 + 40, 500, 30)
+    pygame.draw.rect(screen, WHITE, texto_rect)
+    pygame.draw.rect(screen, BLACK, texto_rect, 1)
+    font = pygame.font.Font(None, 24)
+    text = font.render(estadisticas, True, BLACK)
     text_rect = text.get_rect(center=texto_rect.center)
     screen.blit(text, text_rect)
 
@@ -360,9 +378,9 @@ running = True
 while (running):
     screen.fill(WHITE)
     if (palabras_restantes <= 0):
-        draw_mensaje("Felicidades, terminó con todas las palabras.")
+        draw_mensaje(True)
     elif (tiempo_transcurrido >= max_tiempo):
-        draw_mensaje("Lo lamento, se acabó el tiempo.")
+        draw_mensaje(False)
     pygame.display.flip()
 
     for event in pygame.event.get():
