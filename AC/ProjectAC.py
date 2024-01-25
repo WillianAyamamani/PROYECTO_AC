@@ -72,7 +72,7 @@ if __name__ == "__main__":
     eleccion = VOZ('elección')
     print ('Usted elijió: ', eleccion)
     if eleccion == None:
-        os.system('python sopa.py')    
+        os.system('python ./HM/HMV2.py & python sopa.py') #Ejecutar a la vez (linux)
 
     #DESPEDIDA
     #STAU(datos['later'])
