@@ -38,7 +38,7 @@ class Matrix:
                 self.libres -= 1
             self.matriz[cursor.fila][cursor.columna] = value
 
-    def put(self, palabra):
+    def put(self, palabra, append):
         x, y = random.randint(0, self.dimension - 1), random.randint(0, self.dimension - 1)
         cursor = Cursor(x,y)
 
@@ -55,7 +55,7 @@ class Matrix:
                 restantes -= 1
             cursor.next()
 
-        if restantes == 0:
+        if (restantes == 0 and append):
             # Esta palabra aparece completa en la matriz
             self.palabras.append((x, y, cursor.avanX, cursor.avanY, palabra))
 
@@ -75,11 +75,13 @@ import random
 
 palabras = ["arqui", "compu", "emular", "proc", "nucleo", "chip", "buffer"]
 TAM = 8
+MAX_PALABRAS = 4
 matriz = Matrix(TAM)
 while matriz.libres:
+    print(len(matriz.palabras))
     palabra = palabras[random.randint(0, len(palabras) - 1)]
-    largo = len(palabra)
-    matriz.put(palabra)
+    if (len(matriz.palabras) < MAX_PALABRAS): matriz.put(palabra, True)
+    else: matriz.put(palabra, False)
 
 #MUESTRA EN TERMINAL
 print(matriz)
