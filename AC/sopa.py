@@ -261,7 +261,7 @@ def draw_board():
             screen.blit(text, text_rect)
 
     # Dibujar el botón de verificación
-    verificacion_rect = pygame.Rect(screen.get_width() - 150, screen.get_height() - 50, 120, 30)
+    verificacion_rect = pygame.Rect(screen.get_width() - 150, screen.get_height() - 70, 120, 50)
     verificacion_button = pygame.draw.rect(screen, GREEN, verificacion_rect)
     font = pygame.font.Font(None, 24)
     text = font.render("Verificar", True, BLACK)
@@ -278,7 +278,7 @@ def draw_board():
     screen.blit(text, text_rect)
 
     # Dibujar el apartado de las palabras
-    texto_rect = pygame.Rect(screen.get_width() - 280, screen.get_height() // 2 - 180, 250, 360)
+    texto_rect = pygame.Rect(screen.get_width() - 280, screen.get_height() // 2 - 160, 250, 320)
     pygame.draw.rect(screen, WHITE, texto_rect)
     pygame.draw.rect(screen, BLACK, texto_rect, 1)
     font = pygame.font.Font(None, 24)
