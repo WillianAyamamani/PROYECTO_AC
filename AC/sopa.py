@@ -115,7 +115,7 @@ palabras_mostradas = "Palabras aquí"
 palabras_buscadas = []
 palabra_encontrada = ""
 tiempo_transcurrido = 0
-max_tiempo = 180
+max_tiempo = 10
 
 
 def texto_palabras():
@@ -203,6 +203,17 @@ def aceptar_palabra(botones_seleccionados):
     palabras_mostradas = texto_palabras()
 
     return palabra_encontrada
+
+
+def draw_mensaje(mensaje):
+    # Dibujar el apartado del mensaje final
+    texto_rect = pygame.Rect(screen.get_width() // 2 - 300, screen.get_height() // 2 - 200, 600, 400)
+    pygame.draw.rect(screen, WHITE, texto_rect)
+    pygame.draw.rect(screen, BLACK, texto_rect, 1)
+    font = pygame.font.Font(None, 36)
+    text = font.render(mensaje, True, BLACK)
+    text_rect = text.get_rect(center=texto_rect.center)
+    screen.blit(text, text_rect)
 
 
 def draw_board():
@@ -335,10 +346,23 @@ palabras_mostradas = texto_palabras()
 palabras_restantes = 1
 
 running = True
-while (running and palabras_restantes > 0):
+while (running and palabras_restantes > 0 and tiempo_transcurrido < max_tiempo):
     screen.fill(WHITE)
     tiempo_transcurrido += clock.tick(60) / 1000
     draw_board()
+    pygame.display.flip()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+running = True
+while (running):
+    screen.fill(WHITE)
+    if (palabras_restantes <= 0):
+        draw_mensaje("Felicidades, terminó con todas las palabras.")
+    elif (tiempo_transcurrido >= max_tiempo):
+        draw_mensaje("Lo lamento, se acabó el tiempo.")
     pygame.display.flip()
 
     for event in pygame.event.get():
