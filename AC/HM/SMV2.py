@@ -25,8 +25,8 @@ class detectormanos():
                     self.dibujo.draw_landmarks(frame, mano, self.mpmanos.HAND_CONNECTIONS)
         return frame
     def encontrarposicion(self, frame, ManoNum = 0, dibujar = True):
-        xlist = []
-        ylist = []
+        xlista = []
+        ylista = []
         bbox = []
         self.list = []
         if self.resultados.multi_hand_landmarks:
@@ -46,6 +46,7 @@ class detectormanos():
             if dibujar:
                 cv2.rectangle(frame,(xmin - 20,ymin - 20), (xmax + 20, ymax + 20), (0,255,0), 2)
         return self.list, bbox
+
     def dedosarriba (self):
         dedos = []
         if self.list[self.tip[0]][1] > self.list[self.tip[0]-1][1]:

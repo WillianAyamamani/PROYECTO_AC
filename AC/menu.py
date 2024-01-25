@@ -1,7 +1,8 @@
 import pygame as game
-import subprocess
+import os
 import sys
-from sopa import main
+#from sopa import main
+
 game.init()
 
 Screen_Width = 1000
@@ -15,10 +16,12 @@ font = game.font.SysFont("arialblack", 18)
 color = (246, 239, 232)
 
 def ProcessPy(archivo):
+    #copia
     activate_command = ".\\HM\\ENV\\Scripts\\activate"
     script_command = ["python", archivo]
     combined_command = f"{activate_command} & {' '.join(script_command)}"
     subprocess.run(combined_command, shell=True)
+    #fin
 
 def draw_T (text, font, color, x, y):
     img = font.render(text, True, color)
@@ -49,13 +52,13 @@ while run:
             if event.button == 1:
                 if (UpText(mouseP,option1)):
                     print("1")
-                    main()
+                    os.system("python .\ProjectAC.py")
                 if (UpText(mouseP,option2)):
                     print("2")
-                    main()
+                    os.system("python .\HM\HMV2.py")
                 if (UpText(mouseP,option3)): 
                     print("3")
-                    main()
+                    #main()
 
     game.display.update()
 game.quit()

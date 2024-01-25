@@ -60,7 +60,7 @@ with open('DATA.json', 'r') as archivo:
 
 #MAIN: FUNCION PRINCIPAL
 if __name__ == "__main__":
-    print(CUE('¿Cuando se creo la primera bomba atomica?'))	
+    #print(CUE('¿Cuando se creo la primera bomba atomica?'))	
     #SALUDO
     #STAU(datos['welcome'])
     
@@ -71,8 +71,8 @@ if __name__ == "__main__":
     #PREGUNTA LA ELECCION
     eleccion = VOZ('elección')
     print ('Usted elijió: ', eleccion)
-    if eleccion == 'Uno':
-        os.system('python sopa.py')    
+    if eleccion == None:
+        os.system('python ./HM/HMV2.py & python sopa.py') #Ejecutar a la vez (linux)
 
     #DESPEDIDA
     #STAU(datos['later'])

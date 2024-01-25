@@ -38,7 +38,7 @@ class Matrix:
                 self.libres -= 1
             self.matriz[cursor.fila][cursor.columna] = value
 
-    def put(self, palabra):
+    def put(self, palabra, append):
         x, y = random.randint(0, self.dimension - 1), random.randint(0, self.dimension - 1)
         cursor = Cursor(x,y)
 
@@ -55,7 +55,7 @@ class Matrix:
                 restantes -= 1
             cursor.next()
 
-        if restantes == 0:
+        if (restantes == 0 and append):
             # Esta palabra aparece completa en la matriz
             self.palabras.append((x, y, cursor.avanX, cursor.avanY, palabra))
 
@@ -72,36 +72,39 @@ class Matrix:
 import pygame
 import numpy as np
 import random
-
-palabras = ["arqui", "compu", "emular", "proc", "nucleo", "chip", "buffer"]
-TAM = 10
-matriz = Matrix(TAM)
-while matriz.libres:
-    palabra = palabras[random.randint(0, len(palabras) - 1)]
-    largo = len(palabra)
-    matriz.put(palabra)
+def main():
+    palabras = ["arqui", "compu", "emular", "proc", "nucleo", "chip", "buffer"]
+    TAM = 8
+    MAX_PALABRAS = 4
+    matriz = Matrix(TAM)
+    while matriz.libres:
+        print(len(matriz.palabras))
+        palabra = palabras[random.randint(0, len(palabras) - 1)]
+        if (len(matriz.palabras) < MAX_PALABRAS): matriz.put(palabra, True)
+        else: matriz.put(palabra, False)
 
 #MUESTRA EN TERMINAL
-print(matriz)
-print(matriz.palabras)
+    print(matriz)
+    print(matriz.palabras)
 
-pygame.init()
-width, height = 1250, 750
-screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Sopa de Letras")
-clock = pygame.time.Clock()
+    pygame.init()
+    width, height = 1000, 500
+    screen = pygame.display.set_mode((width, height))
+    pygame.display.set_caption("Sopa de Letras")
+    clock = pygame.time.Clock()
 
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+    RED = (255, 0, 0)
+    GREEN = (0, 255, 0)
+    BLUE = (0, 0, 255)
 
-cell_size = 55
-margin = 10
-board_width = matriz.dimension * cell_size
+    cell_size = 45
+    margin = 10
+    board_width = matriz.dimension * cell_size
+    #ACABE
 board_height = matriz.dimension * cell_size
-board_x = (width - board_width) // 2 - 100
+board_x = (width - board_width) // 2 - 50
 board_y = (height - board_height) // 2
 
 # Inicializar la matriz de botones seleccionados
@@ -113,7 +116,7 @@ palabras_mostradas = "Palabras aquí"
 palabras_buscadas = []
 palabra_encontrada = ""
 tiempo_transcurrido = 0
-max_tiempo = 180
+max_tiempo = 10
 
 
 def texto_palabras():
@@ -203,6 +206,35 @@ def aceptar_palabra(botones_seleccionados):
     return palabra_encontrada
 
 
+def draw_mensaje(terminado):
+    if (terminado):
+        mensaje = "Felicidades, terminó con todas las palabras."
+    else:
+        mensaje = "Lo lamento, se acabó el tiempo."
+
+    # Dibujar el apartado del mensaje final
+    texto_rect = pygame.Rect(screen.get_width() // 2 - 300, screen.get_height() // 2 - 200 - 20, 600, 400)
+    pygame.draw.rect(screen, WHITE, texto_rect)
+    pygame.draw.rect(screen, BLACK, texto_rect, 1)
+    font = pygame.font.Font(None, 36)
+    text = font.render(mensaje, True, BLACK)
+    text_rect = text.get_rect(center=texto_rect.center)
+    screen.blit(text, text_rect)
+
+    # Dibujar el apartado con las estadisticas mostradas
+    if (terminado):
+        estadisticas = "Usted tomó " + str(max_tiempo - tiempo_transcurrido) + " en terminar."
+    else:
+        estadisticas = "Le faltaron encontrar " + str(palabras_restantes) + " palabras."
+    texto_rect = pygame.Rect(screen.get_width() // 2 - 250, screen.get_height() // 2 - 15 + 40, 500, 30)
+    pygame.draw.rect(screen, WHITE, texto_rect)
+    pygame.draw.rect(screen, BLACK, texto_rect, 1)
+    font = pygame.font.Font(None, 24)
+    text = font.render(estadisticas, True, BLACK)
+    text_rect = text.get_rect(center=texto_rect.center)
+    screen.blit(text, text_rect)
+
+
 def draw_board():
     global mensaje_mostrado
     global palabras_mostradas
@@ -223,7 +255,7 @@ def draw_board():
     # Mostrar numero de palabras restantes en la parte superior derecha
     palabras_restantes = len(palabras_buscadas)
     palabras_restantes_texto = f"Quedan {palabras_restantes} palabras"
-    palabras_restantes_rect = pygame.Rect(screen.get_width() - 240, 10, 200, 30)
+    palabras_restantes_rect = pygame.Rect(screen.get_width() - 230, 10, 200, 30)
     pygame.draw.rect(screen, WHITE, palabras_restantes_rect)
     pygame.draw.rect(screen, BLACK, palabras_restantes_rect, 1)
     font = pygame.font.Font(None, 24)
@@ -259,7 +291,7 @@ def draw_board():
             screen.blit(text, text_rect)
 
     # Dibujar el botón de verificación
-    verificacion_rect = pygame.Rect(screen.get_width() - 140, screen.get_height() - 50, 120, 30)
+    verificacion_rect = pygame.Rect(screen.get_width() - 150, screen.get_height() - 70, 120, 50)
     verificacion_button = pygame.draw.rect(screen, GREEN, verificacion_rect)
     font = pygame.font.Font(None, 24)
     text = font.render("Verificar", True, BLACK)
@@ -275,8 +307,8 @@ def draw_board():
     text_rect = text.get_rect(center=texto_rect.center)
     screen.blit(text, text_rect)
 
-    # Dibujar el apartado de las palabra
-    texto_rect = pygame.Rect(screen.get_width() - 300, screen.get_height() // 2 - 250, 260, 500)
+    # Dibujar el apartado de las palabras
+    texto_rect = pygame.Rect(screen.get_width() - 280, screen.get_height() // 2 - 160, 250, 320)
     pygame.draw.rect(screen, WHITE, texto_rect)
     pygame.draw.rect(screen, BLACK, texto_rect, 1)
     font = pygame.font.Font(None, 24)
@@ -333,10 +365,23 @@ palabras_mostradas = texto_palabras()
 palabras_restantes = 1
 
 running = True
-while (running and palabras_restantes > 0):
+while (running and palabras_restantes > 0 and tiempo_transcurrido < max_tiempo):
     screen.fill(WHITE)
     tiempo_transcurrido += clock.tick(60) / 1000
     draw_board()
+    pygame.display.flip()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+running = True
+while (running):
+    screen.fill(WHITE)
+    if (palabras_restantes <= 0):
+        draw_mensaje(True)
+    elif (tiempo_transcurrido >= max_tiempo):
+        draw_mensaje(False)
     pygame.display.flip()
 
     for event in pygame.event.get():
