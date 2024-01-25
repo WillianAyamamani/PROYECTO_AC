@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import SMV2 as sm  #Programa que contiene la deteccion y seguimiento de manos
 import autopy  #Libreria que nos va a permitir manipular el mouse
+import time
 
 #---------------------------------Declaracion de variables---------------------------------------
 anchocam, altocam = 640, 480
@@ -11,6 +12,7 @@ anchopanta, altopanta = autopy.screen.size() #Obtenemos las dimensiones de nuest
 sua = 5
 pubix, pubiy = 0,0
 cubix, cubiy = 0,0
+ultimo_clic = time.time() #Define una variable para almacenar el tiempo del último clic
 #print(anchopanta, anchocam)
 
 #----------------------------------- Lectura de la camara----------------------------------------
@@ -53,16 +55,21 @@ while True:
             cv2.circle(frame, (x1,y1), 10, (0,0,0), cv2.FILLED)
             pubix, pubiy = cubix, cubiy
 
-        #----------------------------- Comprobar si esta en modo click -------------------------
-        if dedos[1] == 1 and dedos[2] == 1:  # Si el indice esta arriba y el corazon tambien
-            # --------------->Modo click: encontrar la distancia entre ellos-------------------------
-            longitud, frame, linea = detector.distancia(8,12,frame) #Nos entrega la distancia entre el punto 8 y 12
+        # ----------------------------- Comprobar si está en modo click -------------------------
+        if dedos[1] == 1 and dedos[2] == 1:  # Si el índice está arriba y el corazón también
+            # ---------------> Modo click: encontrar la distancia entre ellos -------------------------
+            longitud, frame, linea = detector.distancia(8, 12, frame)  # Nos entrega la distancia entre el punto 8 y 12
             print(longitud)
             if longitud < 30:
-                cv2.circle(frame, (linea[4],linea[5]), 10, (0,255,0), cv2.FILLED)
+                cv2.circle(frame, (linea[4], linea[5]), 10, (0, 255, 0), cv2.FILLED)
 
-                #-------------------- Hacemos click si la distancia es corta ---------------------------
-                autopy.mouse.click()
+                # -------------------- Hacer click si la distancia es corta ---------------------------
+                tiempo_actual = time.time()
+                print(tiempo_actual, ultimo_clic)
+                if tiempo_actual - ultimo_clic >= 0.5:  # Comprueba si ha pasado al menos 0.5 segundos desde el último clic
+                    autopy.mouse.click()
+                    ultimo_clic = tiempo_actual
+
 
 
     cv2.imshow("Mouse", frame)
