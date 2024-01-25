@@ -74,7 +74,7 @@ import numpy as np
 import random
 
 palabras = ["arqui", "compu", "emular", "proc", "nucleo", "chip", "buffer"]
-TAM = 10
+TAM = 8
 matriz = Matrix(TAM)
 while matriz.libres:
     palabra = palabras[random.randint(0, len(palabras) - 1)]
@@ -86,7 +86,7 @@ print(matriz)
 print(matriz.palabras)
 
 pygame.init()
-width, height = 1250, 750
+width, height = 1000, 500
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Sopa de Letras")
 clock = pygame.time.Clock()
@@ -97,11 +97,11 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
-cell_size = 55
+cell_size = 45
 margin = 10
 board_width = matriz.dimension * cell_size
 board_height = matriz.dimension * cell_size
-board_x = (width - board_width) // 2 - 100
+board_x = (width - board_width) // 2 - 50
 board_y = (height - board_height) // 2
 
 # Inicializar la matriz de botones seleccionados
@@ -223,7 +223,7 @@ def draw_board():
     # Mostrar numero de palabras restantes en la parte superior derecha
     palabras_restantes = len(palabras_buscadas)
     palabras_restantes_texto = f"Quedan {palabras_restantes} palabras"
-    palabras_restantes_rect = pygame.Rect(screen.get_width() - 240, 10, 200, 30)
+    palabras_restantes_rect = pygame.Rect(screen.get_width() - 230, 10, 200, 30)
     pygame.draw.rect(screen, WHITE, palabras_restantes_rect)
     pygame.draw.rect(screen, BLACK, palabras_restantes_rect, 1)
     font = pygame.font.Font(None, 24)
@@ -259,7 +259,7 @@ def draw_board():
             screen.blit(text, text_rect)
 
     # Dibujar el botón de verificación
-    verificacion_rect = pygame.Rect(screen.get_width() - 140, screen.get_height() - 50, 120, 30)
+    verificacion_rect = pygame.Rect(screen.get_width() - 150, screen.get_height() - 50, 120, 30)
     verificacion_button = pygame.draw.rect(screen, GREEN, verificacion_rect)
     font = pygame.font.Font(None, 24)
     text = font.render("Verificar", True, BLACK)
@@ -275,8 +275,8 @@ def draw_board():
     text_rect = text.get_rect(center=texto_rect.center)
     screen.blit(text, text_rect)
 
-    # Dibujar el apartado de las palabra
-    texto_rect = pygame.Rect(screen.get_width() - 300, screen.get_height() // 2 - 250, 260, 500)
+    # Dibujar el apartado de las palabras
+    texto_rect = pygame.Rect(screen.get_width() - 280, screen.get_height() // 2 - 180, 250, 360)
     pygame.draw.rect(screen, WHITE, texto_rect)
     pygame.draw.rect(screen, BLACK, texto_rect, 1)
     font = pygame.font.Font(None, 24)
