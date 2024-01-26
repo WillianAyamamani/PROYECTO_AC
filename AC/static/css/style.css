@@ -1,0 +1,43 @@
+body{
+	position: relative;
+}
+img{
+  height: 200px;
+  object-fit: cover;
+	border-radius: 4px;
+}
+#menu{
+	display: flex;
+	background-color: var(--background);
+	gap: 20px;
+}
+#test,#profile,#about{
+	position: relative;
+	left: 0px;
+	width: 300px;
+	height: 320px;
+	background-color: var(--background);
+	border-radius: 8px;
+	transition: 1000ms all;
+	transform-origin: center left;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.5);
+	outline:1px solid var(--background);
+	overflow: hidden;
+}
+#test:hover,#profile:hover,#about:hover{
+	cursor: pointer;
+	background: rgb(255, 195, 0);
+	transform: scale(1.15);
+}
+
+#test:hover ~ #test,#profile:hover ~ #profile,#about:hover ~#about{
+	font-weight: bold;
+	cursor: pointer;
+	transform: translateX(22px);
+}
+.but,#menu{
+	position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title>TEST::ARQUITECTURA DE COMPUTADORAS</title>
+		
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css' ) }}">
+
+	</head>
+	<body>
+		<h1>MESSI GOD</h1>
+		<div id="menu">
+			<div id="test">
+				<a href="./examen">
+					<div class= "but">
+						<img src="{{url_for('static', filename="img/Test.png")}}">
+					</div>
+				</a>
+			</div>
+			<div id="profile">
+				<a href="./Users">
+					<div class = "but">
+						<img src="{{url_for('static', filename="img/Usuario.png")}}">
+					</div>
+				</a>
+			</div>
+			<div id="about">
+				<a href="./ASISTENT">
+					<div class = "but">
+						<img src="{{url_for('static', filename="img/About.png")}}">	
+					</div>
+				</a>
+			</div>
+		</div>
+	</body>
+</html>
