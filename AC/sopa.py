@@ -75,7 +75,7 @@ import random
 
 palabras = ["arqui", "compu", "emular", "proc", "nucleo", "chip", "buffer"]
 TAM = 8
-MAX_PALABRAS = 4
+MAX_PALABRAS = 2
 matriz = Matrix(TAM)
 while matriz.libres:
     print(len(matriz.palabras))
@@ -115,7 +115,7 @@ palabras_mostradas = "Palabras aquí"
 palabras_buscadas = []
 palabra_encontrada = ""
 tiempo_transcurrido = 0
-max_tiempo = 100
+max_tiempo = 180
 
 
 def texto_palabras():
@@ -222,7 +222,7 @@ def draw_mensaje(terminado):
 
     # Dibujar el apartado con las estadisticas mostradas
     if (terminado):
-        estadisticas = "Usted tomó " + str(round(max_tiempo - tiempo_transcurrido)) + " segundos en terminar."
+        estadisticas = "Usted tomó " + str(round(tiempo_transcurrido)) + " segundos en terminar."
     else:
         estadisticas = "Le faltaron encontrar " + str(palabras_restantes) + " palabras."
     texto_rect = pygame.Rect(screen.get_width() // 2 - 250, screen.get_height() // 2 - 15 + 40, 500, 30)
