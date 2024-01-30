@@ -1,24 +1,24 @@
 <html>
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
+		<script src = "{{url_for('static', filename='js/test.js')}}"></script>
 </head>
 <body>
     <div class="formu">
+			<form>
+				{% for pregunta in preguntas['preguntas'] %}
         <div id="enu">
-            <h3 id="enu-text"></h3>
+					<h3>{{ pregunta['texto'] }}</h3>
         </div>
         <div class="options">
             <div class="buttons">
-                {% for pregunta in preguntas['preguntas'] %}
-                    <div>
-                        <h3>{{ pregunta['texto'] }}</h3>
-                            {% for alternativa in pregunta['alternativas'] %}
-                                <button>{{ alternativa }}</button>
-                            {% endfor %}
-                    </div>
-                {% endfor %}
+							{% for alternativa in pregunta['alternativas'] %}
+							<button>{{ alternativa }}</button>
+							{% endfor %}       
             </div>
-        </div>
+        </div> 
+				{% endfor %}
+			</form>
     </div>
 </body>
 </html>
