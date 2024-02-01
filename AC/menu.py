@@ -1,7 +1,8 @@
 import pygame as game
 import os
+import platform
 import sys
-#from sopa import main
+from sopa import main as sopa
 
 game.init()
 
@@ -52,13 +53,23 @@ while run:
             if event.button == 1:
                 if (UpText(mouseP,option1)):
                     print("1")
-                    os.system("python .\ProjectAC.py")
+                    if platform.system() == 'Linux':
+                        os.system("python ./ProjectAC.py")
+                    elif platform.system() == 'Windows':
+                        os.system("python .\ProjectAC.py")
+                    else:
+                        print("Sistema operativo no compatible")
                 if (UpText(mouseP,option2)):
                     print("2")
-                    os.system("python .\HM\HMV2.py")
+                    if platform.system() == 'Linux':
+                        os.system("python ./HM/HMV2.py")
+                    elif platform.system() == 'Windows':
+                        os.system("python .\HM\HMV2.py")
+                    else:
+                        print("Sistema operativo no compatible")
                 if (UpText(mouseP,option3)): 
                     print("3")
-                    #main()
+                    sopa()
 
     game.display.update()
 game.quit()
