@@ -98,7 +98,6 @@ def main():
     MAX_PALABRAS = 4
     matriz = Matrix(TAM)
     while matriz.libres:
-        print(len(matriz.palabras))
         palabra = palabras[random.randint(0, len(palabras) - 1)]
         if (len(matriz.palabras) < MAX_PALABRAS): matriz.put(palabra, True)
         else: matriz.put(palabra, False)
