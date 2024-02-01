@@ -6,7 +6,7 @@ import os
 import cv2
 
 #KEY API
-client = OpenAI(api_key ='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')
+client = OpenAI(api_key ='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')
 
 #CONVERT
 convert = reconoce.Recognizer()

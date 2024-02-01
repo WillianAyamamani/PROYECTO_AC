@@ -31,6 +31,7 @@
 
 
     var preguntas = {{preguntas | tojson | safe}};
+    var len = preguntas.length;
     console.log("MESSI");
     console.log(preguntas);
     question();
@@ -61,9 +62,11 @@
         }, speed); 
     }
     function reconocer (eleccion){
-        if(number<preguntas.length && alternativas[eleccion].textContet == preguntas[number].alternativa_correcta)
+        console.log(number);
+        console.log(preguntas.length);
+        if(alternativas[eleccion].textContet == preguntas[number].alternativa_correcta)
             aciertos++;
-        else{
+        else if(number > len){
            let div = document.getElementById("cuestionario"); 
                 div.style.display = "none";       
             } 

@@ -1,0 +1,49 @@
+{
+      "preguntas": [
+            {
+                  "pregunta": "que es una cpu",
+                  "alternativas": [
+                        "unidad central de proceso",
+                        "unidad computadora de procesos",
+                        "unidad control de proceso"
+                  ],
+                  "alternativa_correcta": "unidad central de proceso"
+            },
+            {
+                  "pregunta": "que es una gpu",
+                  "alternativas": [
+                        "unidad grafica de proceso",
+                        "unidad generadora de proceso",
+                        "unidad grafica de procesamiento"
+                  ],
+                  "alternativa_correcta": "unidad grafica de procesamiento"
+            },
+            {
+                  "pregunta": "que es la memoria ram",
+                  "alternativas": [
+                        "memoria de acceso directo",
+                        "memoria random de almacenamiento",
+                        "memoria ramdom de acceso"
+                  ],
+                  "alternativa_correcta": "memoria de acceso directo"
+            },
+            {
+                  "pregunta": "que es una motherboard",
+                  "alternativas": [
+                        "tarjeta madre",
+                        "placa principal",
+                        "tabla central"
+                  ],
+                  "alternativa_correcta": "tarjeta madre"
+            },
+            {
+                  "pregunta": "que es una gpu",
+                  "alternativas": [
+                        "unidad grafica de proceso",
+                        "unidad generadora de proceso",
+                        "unidad grafica de procesamiento"
+                  ],
+                  "alternativa_correcta": "unidad grafica de procesamiento"
+            }
+      ]
+}
