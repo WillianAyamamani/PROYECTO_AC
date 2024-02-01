@@ -6,7 +6,7 @@ import os
 import cv2
 
 #KEY API
-client = OpenAI(api_key ='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')
+client = OpenAI(api_key ='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')
 
 #CONVERT
 convert = reconoce.Recognizer()
@@ -55,12 +55,12 @@ def VOZ (tipo):
         print("Error en la solicitud a Google Speech Recognition: {0}".format(e))
 
 #ENLACE BASE DE DATOS
-with open('DATA.json', 'r') as archivo:
-    datos =  json.load(archivo)
+#with open('DATA.json', 'r') as archivo:
+#    datos =  json.load(archivo)
 
 #MAIN: FUNCION PRINCIPAL
 if __name__ == "__main__":
-    print(CUE('una pregunta de Arquitectura de computadoras en json con sus alternativas, y su respuesta como esto:{"pregunta": "¿Cuál es la capital de Francia?", "alternativas": ["Londres", "París", "Berlín", "Madrid"],  "respuesta": "París"}'))	
+    print(CUE('NO EXPLIQUES NADA SOLO DAME EN LIMPIO LA REPSUESTA,una pregunta de Arquitectura de computadoras en json con sus alternativas, y su respuesta como esto:{"pregunta": "¿Cuál es la capital de Francia?", "alternativas": ["Londres", "París", "Berlín", "Madrid"],  "respuesta": "París"}'))	
     #SALUDO
     #STAU(datos['welcome'])
     

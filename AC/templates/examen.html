@@ -1,24 +1,76 @@
 <html>
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
-		<script src = "{{url_for('static', filename='js/test.js')}}"></script>
+    <!--script src="{{ url_for('static', filename='js/test.js') }}"></script-->
 </head>
 <body>
-    <div class="formu">
-			<form>
-				{% for pregunta in preguntas['preguntas'] %}
+    <div class="formu" id = "cuestionario">
         <div id="enu">
-					<h3>{{ pregunta['texto'] }}</h3>
+					<h3 id = "enunciado"> ¿QUIENE ES EL GOD?</h3>
         </div>
         <div class="options">
-            <div class="buttons">
-							{% for alternativa in pregunta['alternativas'] %}
-							<button>{{ alternativa }}</button>
-							{% endfor %}       
+            <div class="buttons" id  = "buttons">
+                <button id = "uno" onclick = "reconocer(0)">MESSI</button>
+                <button id = "dos" onclick = "reconocer(1)">PELE</button>
+                <button id = "tres" onclick = "reconocer(2)">CR7</button>
+                <button id = "cuatro" onclick = "reconocer(3)">MARADONA</button>
             </div>
         </div> 
-				{% endfor %}
-			</form>
+    </div>
+    <div class = "progreso">
+        <div class = "circular">
+            <span id = "progress">0%</span>
+        </div>
     </div>
 </body>
+<script>
+    var aciertos = 0;
+    var enunciado = document.getElementById("enunciado");
+    var number = -1;
+    var alternativas = ["uno", "dos", "tres", "cuatro"];
+
+
+    var preguntas = {{preguntas | tojson | safe}};
+    console.log("MESSI");
+    console.log(preguntas);
+    question();
+    progresst();
+    // Definir la función question
+    function question() {
+        number++;        
+        enunciado.textContent = preguntas[number].pregunta;
+        for (let i = 0; i < alternativas.length; i++) {
+            let button = document.getElementById(alternativas[i]);
+            if(preguntas[number].alternativas[i] == undefined)
+                button.textContent = "Ninguna de las Anteriores";
+            else
+                button.textContent = preguntas[number].alternativas[i];
+        }
+    }
+    function progresst(){
+        let cir = document.querySelector(".circular"), progress = document.querySelector("#progress");
+        let progressstart = 0, progressend = 85.5, speed = 10;
+        let progressA = setInterval(() => {
+            progressstart ++;
+            progress.textContent = `${progressstart}%`
+            cir.style.background = `conic-gradient(#2a83e8 ${progressstart*3.6}deg, #e3e3e3 0deg)`
+
+            if(progressstart == progressend){
+                clearInterval(progressA);
+            }
+        }, speed); 
+    }
+    function reconocer (eleccion){
+        if(number<preguntas.length && alternativas[eleccion].textContet == preguntas[number].alternativa_correcta)
+            aciertos++;
+        else{
+           let div = document.getElementById("cuestionario"); 
+                div.style.display = "none";       
+            } 
+        question();
+    }
+    // Asignar la función al objeto global (window)
+    window.reconocer = reconocer;
+
+</script>
 </html>
