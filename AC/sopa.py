@@ -73,6 +73,26 @@ import pygame
 import numpy as np
 import random
 def main():
+    global matriz
+    global mensaje_mostrado
+    global palabras_mostradas
+    global palabras_buscadas
+    global palabras_restantes
+    global palabra_encontrada
+    global max_tiempo
+    global tiempo_transcurrido
+    global screen
+    global WHITE
+    global BLACK
+    global RED
+    global GREEN
+    global BLUE
+    global board_x
+    global board_y
+    global cell_size
+    global boton_seleccionado
+    global boton_encontrado
+
     palabras = ["arqui", "compu", "emular", "proc", "nucleo", "chip", "buffer"]
     TAM = 8
     MAX_PALABRAS = 4
@@ -83,7 +103,7 @@ def main():
         if (len(matriz.palabras) < MAX_PALABRAS): matriz.put(palabra, True)
         else: matriz.put(palabra, False)
 
-#MUESTRA EN TERMINAL
+    #MUESTRA EN TERMINAL
     print(matriz)
     print(matriz.palabras)
 
@@ -102,24 +122,55 @@ def main():
     cell_size = 45
     margin = 10
     board_width = matriz.dimension * cell_size
-    #ACABE
-board_height = matriz.dimension * cell_size
-board_x = (width - board_width) // 2 - 50
-board_y = (height - board_height) // 2
+    board_height = matriz.dimension * cell_size
+    board_x = (width - board_width) // 2 - 50
+    board_y = (height - board_height) // 2
+    
+    # Inicializar la matriz de botones seleccionados
+    boton_seleccionado = [[False] * TAM for _ in range(TAM)]
+    boton_encontrado = [[False] * TAM for _ in range(TAM)]
+    
+    mensaje_mostrado = "¡Tu puedes!"
+    palabras_mostradas = "Palabras aquí"
+    palabras_buscadas = []
+    palabra_encontrada = ""
+    tiempo_transcurrido = 0
+    max_tiempo = 100
 
-# Inicializar la matriz de botones seleccionados
-boton_seleccionado = [[False] * TAM for _ in range(TAM)]
-boton_encontrado = [[False] * TAM for _ in range(TAM)]
-
-mensaje_mostrado = "¡Tu puedes!"
-palabras_mostradas = "Palabras aquí"
-palabras_buscadas = []
-palabra_encontrada = ""
-tiempo_transcurrido = 0
-max_tiempo = 100
+    for palabra in matriz.palabras:
+        palabras_buscadas.append(palabra[4])
+    palabras_mostradas = texto_palabras()
+    palabras_restantes = 1
+    
+    running = True
+    while (running and palabras_restantes > 0 and tiempo_transcurrido < max_tiempo):
+        screen.fill(WHITE)
+        tiempo_transcurrido += clock.tick(60) / 1000
+        draw_board()
+        pygame.display.flip()
+    
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+    
+    running = True
+    while (running):
+        screen.fill(WHITE)
+        if (palabras_restantes <= 0):
+            draw_mensaje(True)
+        elif (tiempo_transcurrido >= max_tiempo):
+            draw_mensaje(False)
+        pygame.display.flip()
+    
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+    
+    pygame.quit()
 
 
 def texto_palabras():
+    global palabras_buscadas
     txt_palabras = ""
     
     for palabra in palabras_buscadas:
@@ -358,34 +409,3 @@ def draw_board():
         text_rect = text.get_rect(center=rect.center)
         screen.blit(text, text_rect)
 
-
-for palabra in matriz.palabras:
-    palabras_buscadas.append(palabra[4])
-palabras_mostradas = texto_palabras()
-palabras_restantes = 1
-
-running = True
-while (running and palabras_restantes > 0 and tiempo_transcurrido < max_tiempo):
-    screen.fill(WHITE)
-    tiempo_transcurrido += clock.tick(60) / 1000
-    draw_board()
-    pygame.display.flip()
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-running = True
-while (running):
-    screen.fill(WHITE)
-    if (palabras_restantes <= 0):
-        draw_mensaje(True)
-    elif (tiempo_transcurrido >= max_tiempo):
-        draw_mensaje(False)
-    pygame.display.flip()
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-pygame.quit()
