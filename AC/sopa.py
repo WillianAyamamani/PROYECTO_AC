@@ -160,6 +160,9 @@ def main():
             draw_mensaje(True)
         elif (tiempo_transcurrido >= max_tiempo):
             draw_mensaje(False)
+        else:
+            draw_mensaje(False)
+
         pygame.display.flip()
     
         for event in pygame.event.get():
@@ -261,7 +264,7 @@ def draw_mensaje(terminado):
     if (terminado):
         mensaje = "Felicidades, terminó con todas las palabras."
     else:
-        mensaje = "Lo lamento, se acabó el tiempo."
+        mensaje = "Lo lamento, no logró encontrar las palabras."
 
     # Dibujar el apartado del mensaje final
     texto_rect = pygame.Rect(screen.get_width() // 2 - 300, screen.get_height() // 2 - 200 - 20, 600, 400)
