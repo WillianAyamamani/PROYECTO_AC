@@ -36,7 +36,7 @@ app = Flask(__name__)
 @app.route("/")
 def HOME():
     #Creacion de nuevas preguntas
-    prompt = 'RESPUESTA LIMPIA, NO EXPLIQUES NADA, Genera un formato json dame preguntas (sin signos de interregacion y sin mayusculas, no pongas la tilde de las palabras) acerca de arquitectura de computadoras con sus alternativas y su alternativa correcta, (es OBLIGATORIO que este sin signos de interregacion y sin mayusculas, no pongas la tilde de las palabras, en toda la RESPUESTA")'
+    prompt = 'RESPUESTA LIMPIA, NO EXPLIQUES NADA, Genera un formato json dame 10 preguntas (sin signos de interregacion y sin mayusculas, no pongas la tilde de las palabras) acerca de arquitectura de computadoras con 4 alternativas y su alternativa correcta, (es OBLIGATORIO que este sin signos de interregacion y sin mayusculas, no pongas la tilde de las palabras, en toda la RESPUESTA"), Example: "{    "preguntas": [        {            "pregunta": "que es la arquitectura de computadoras?",            "alternativas": ["conjunto de componentes de hardware y software que conforman un sistema de computación", "conjunto de programas de computadora", "conjunto de lenguajes de programación", "conjunto de periféricos de entrada y salida"],            "alternativaCorrecta": "conjunto de componentes de hardware y software que conforman un sistema de computacion"        },        {            "pregunta": "que es la unidad central de procesamiento (cpu)?",            "alternativas": ["memoria de almacenamiento interno", "dispositivo de entrada de información", "dispositivo de salida de información", "componente principal que realiza las operaciones y controla el funcionamiento del sistema"],            "alternativaCorrecta": "componente principal que realiza las operaciones y controla el funcionamiento del sistema"},"'
 
     question=CUE(prompt)
     print(question)
@@ -65,10 +65,12 @@ def TEST():
     with open('prueba.json', 'r', encoding = 'utf-8') as file:
         datos = json.load(file)
     preguntas = datos.get("preguntas",[])
+    total = datos.get("total")
+    print(total)
     #preguntas = json.get_json('prueba.json')
     #preguntas = {"preguntas": [{"texto": generated_json_str, "alternativas": []}]}
 
-    return render_template('examen.html', preguntas=preguntas)
+    return render_template('examen.html', preguntas=preguntas, total = total)
     #   :::**:::
     #return render_template('index.html')
 
