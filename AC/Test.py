@@ -65,14 +65,25 @@ def TEST():
     with open('prueba.json', 'r', encoding = 'utf-8') as file:
         datos = json.load(file)
     preguntas = datos.get("preguntas",[])
-    total = datos.get("total")
-    print(total)
     #preguntas = json.get_json('prueba.json')
     #preguntas = {"preguntas": [{"texto": generated_json_str, "alternativas": []}]}
 
-    return render_template('examen.html', preguntas=preguntas, total = total)
+    return render_template('examen.html', preguntas=preguntas)
     #   :::**:::
     #return render_template('index.html')
+@app.route("/Puzzle")
+def GAME():
+    #  :::FALTA:::
+    with open('Img.json', 'r', encoding = 'utf-8') as file:
+        datos = json.load(file)
+    preguntas = datos.get("preguntas",[])
+    #preguntas = json.get_json('prueba.json')
+    #preguntas = {"preguntas": [{"texto": generated_json_str, "alternativas": []}]}
+
+    return render_template('Puzle.html', preguntas=preguntas)
+    #   :::**:::
+    #return render_template('index.html')
+
 
 if __name__ == '__main__':
     webbrowser.open_new('http://127.0.0.1:5000/')

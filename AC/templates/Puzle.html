@@ -1,18 +1,77 @@
 <html>
 	<head>
+		<title>TEST::ARQUITECTURA DE COMPUTADORAS</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/puzzle.css' ) }}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	</head>
 	<body>
-		<div id = "Titulo">
-
-		</div>
-		<div id = "Contenido">
-			<div id = "pregunta">
-
+		<h1 id = "enunciado">MESSI GOD</h1>
+		<div id="menu">
+			<div class="contorno">
+        <div class="but">
+					 <img src="{{ url_for('static', filename='img/' + preguntas[0].opciones[0]) }}" alt="a" id = "a" onclick = "reconocer('a')">        
+				</div>
 			</div>
-			<div id = "Imagenes">
-				
+			<div class="contorno">
+        <div class="but">
+					 <img src="{{ url_for('static', filename='img/' + preguntas[0].opciones[1]) }}" alt="b" id = "b" onclick = "reconocer('b')">    
+				</div>
+			</div>
+			<div class="contorno">
+				<div class="but">
+					<img src="{{ url_for('static', filename='img/' + preguntas[0].opciones[2]) }}" alt="c" id = "c" onclick = "reconocer('c')">
+				</div>
+			</div>
+		</div>
+		<div id = "finish">
+			<div id = "des">
+				<h4 id = "msj" > </h4>
+				<img src = "{{url_for('static', filename = 'img/CR7.png')}}">
+				<a href= "./"><i class="fa-solid fa-house-chimney"></i></a>
 			</div>
 		</div>
 	</body>
+	<script>
+
+    var aciertos = 0;
+    var enunciado = document.getElementById("enunciado");
+    var number = -1;
+    var alternativas = ["a", "b", "c"];
+    var preguntas = {{preguntas | tojson | safe}};
+    question();
+    // Definir la función question
+   
+
+		function question() {
+			number++;        
+			enunciado.textContent = preguntas[number].pregunta;
+			for (let i = 0; i < 3; i++) { // Corrección: Agregar ';' después de la condición del bucle for
+				let button = document.getElementById(alternativas[i]);
+				button.src = '{{ url_for('static', filename='img/') }}' + preguntas[number].opciones[i];
+			}
+		}
+
+		function reconocer(eleccion) {
+    console.log(eleccion.toString()+"ANSWER:"+preguntas[number].respuesta_correcta);
+		console.log(aciertos)
+    if (eleccion == preguntas[number].respuesta_correcta) // Corrección: Cambiar "alternativas" por "opciones"
+        aciertos++;
+		 if(number == 4){
+        let menu = document.getElementById("menu");
+			  let fin = document.getElementById("finish");
+			  let msj = document.getElementById("enunciado");
+			  let ms = document.getElementById("msj");
+			  msj.textContent = "CULMINADO::GOOD JOB";
+			  ms.textContent = "Haz obtenido "+aciertos+" aciertos de un total de 5 Preguntas"
+
+
+        menu.style.display = "none";
+			  fin.style.display = "flex";
+    }
+    else
+        question();    		
+		}
+		window.reconocer = reconocer;
+	</script>
 </html>

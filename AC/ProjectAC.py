@@ -7,7 +7,7 @@ from flask import Flask, render_template, request
 import webbrowser
 
 #KEY API
-client = OpenAI(api_key ='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')
+client = OpenAI(api_key ='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')
 
 #PETICIONES DIFERENTES
 def CUE (quetion):

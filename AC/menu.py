@@ -35,6 +35,9 @@ def draw_T (text, font, color, x, y):
 def UpText (mouse, text):
     return text.collidepoint(mouse)
 
+                 
+#os.system("python .\HM\HMV2.py")
+print("KDA")
 run = True
 while run:
     screen.blit(background_image, (0, 0))
@@ -55,24 +58,13 @@ while run:
             if event.button == 1:
                 if (UpText(mouseP,option1)):
                     print("1")
-                    if platform.system() == 'Linux':
-                        os.system("python ./ProjectAC.py")
-                    elif platform.system() == 'Windows':
-                        os.system("python .\ProjectAC.py")
-                    else:
-                        print("Sistema operativo no compatible")
+                    os.system("python .\ProjectAC.py")
                 if (UpText(mouseP,option2)):
-                    print("2")
-                    if platform.system() == 'Linux':
-                        os.system("python ./HM/HMV2.py")
-                    elif platform.system() == 'Windows':
-                        os.system("python .\HM\HMV2.py")
-                    else:
-                        print("Sistema operativo no compatible")
+                    print("2") 
+                    sopa()                   
                 if (UpText(mouseP,option3)): 
                     print("3")
                     os.system("python .\Test.py")
-                    #sopa()
 
     game.display.update()
 game.quit()
