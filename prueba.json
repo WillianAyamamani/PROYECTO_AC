@@ -1,0 +1,104 @@
+{
+      "preguntas": [
+            {
+                  "pregunta": "que es la memoria ram?",
+                  "alternativas": [
+                        "dispositivo de entrada de informaci\u00f3n",
+                        "dispositivo de salida de informaci\u00f3n",
+                        "memoria principal de la computadora",
+                        "tarjeta gr\u00e1fica"
+                  ],
+                  "alternativaCorrecta": "memoria principal de la computadora"
+            },
+            {
+                  "pregunta": "que es el disco duro?",
+                  "alternativas": [
+                        "dispositivo que permite la comunicaci\u00f3n entre la computadora y el usuario",
+                        "dispositivo de almacenamiento permanente de informaci\u00f3n",
+                        "dispositivo de procesamiento de datos",
+                        "dispositivo de entrada de informaci\u00f3n"
+                  ],
+                  "alternativaCorrecta": "dispositivo de almacenamiento permanente de informaci\u00f3n"
+            },
+            {
+                  "pregunta": "que es el sistema operativo?",
+                  "alternativas": [
+                        "conjunto de programas de computadora",
+                        "conjunto de lenguajes de programaci\u00f3n",
+                        "conjunto de componentes de hardware y software",
+                        "conjunto de perif\u00e9ricos de entrada y salida"
+                  ],
+                  "alternativaCorrecta": "conjunto de componentes de hardware y software"
+            },
+            {
+                  "pregunta": "que es el microprocesador?",
+                  "alternativas": [
+                        "dispositivo que permite la comunicaci\u00f3n entre la computadora y el usuario",
+                        "componente principal que realiza las operaciones y controla el funcionamiento del sistema",
+                        "dispositivo de almacenamiento permanente de informaci\u00f3n",
+                        "memoria principal de la computadora"
+                  ],
+                  "alternativaCorrecta": "componente principal que realiza las operaciones y controla el funcionamiento del sistema"
+            },
+            {
+                  "pregunta": "que es un perif\u00e9rico de entrada?",
+                  "alternativas": [
+                        "dispositivo que recibe informaci\u00f3n del usuario y la env\u00eda a la computadora",
+                        "dispositivo que presenta informaci\u00f3n al usuario",
+                        "dispositivo que almacena informaci\u00f3n de manera temporal",
+                        "dispositivo de entrada de informaci\u00f3n"
+                  ],
+                  "alternativaCorrecta": "dispositivo que recibe informaci\u00f3n del usuario y la env\u00eda a la computadora"
+            },
+            {
+                  "pregunta": "que es un perif\u00e9rico de salida?",
+                  "alternativas": [
+                        "dispositivo que recibe informaci\u00f3n del usuario y la env\u00eda a la computadora",
+                        "dispositivo que presenta informaci\u00f3n al usuario",
+                        "dispositivo que almacena informaci\u00f3n de manera temporal",
+                        "dispositivo de salida de informaci\u00f3n"
+                  ],
+                  "alternativaCorrecta": "dispositivo que presenta informaci\u00f3n al usuario"
+            },
+            {
+                  "pregunta": "que es la tarjeta madre?",
+                  "alternativas": [
+                        "conjunto de programas de computadora",
+                        "conjunto de lenguajes de programaci\u00f3n",
+                        "conjunto de componentes de hardware y software",
+                        "placa principal que conecta todos los componentes de una computadora"
+                  ],
+                  "alternativaCorrecta": "placa principal que conecta todos los componentes de una computadora"
+            },
+            {
+                  "pregunta": "que es el lenguaje assembly?",
+                  "alternativas": [
+                        "lenguaje de programaci\u00f3n de alto nivel",
+                        "lenguaje de programaci\u00f3n orientado a objetos",
+                        "lenguaje de programaci\u00f3n interpretado",
+                        "lenguaje de bajo nivel"
+                  ],
+                  "alternativaCorrecta": "lenguaje de bajo nivel"
+            },
+            {
+                  "pregunta": "que es la tarjeta de video?",
+                  "alternativas": [
+                        "dispositivo que permite la comunicaci\u00f3n entre la computadora y el usuario",
+                        "dispositivo de almacenamiento permanente de informaci\u00f3n",
+                        "tarjeta gr\u00e1fica",
+                        "dispositivo de entrada de informaci\u00f3n"
+                  ],
+                  "alternativaCorrecta": "tarjeta gr\u00e1fica"
+            },
+            {
+                  "pregunta": "que es la memoria cache?",
+                  "alternativas": [
+                        "dispositivo de almacenamiento permanente de informaci\u00f3n",
+                        "dispositivo que presenta informaci\u00f3n al usuario",
+                        "dispositivo que recibe informaci\u00f3n del usuario y la env\u00eda a la computadora",
+                        "memoria de acceso r\u00e1pido y alta velocidad que almacena datos temporalmente"
+                  ],
+                  "alternativaCorrecta": "memoria de acceso r\u00e1pido y alta velocidad que almacena datos temporalmente"
+            }
+      ]
+}

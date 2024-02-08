@@ -13,8 +13,10 @@ screen = game.display.set_mode((Screen_Width,Screen_Eigth))
 game.display.set_caption("MENU MESSI")
 #--------------------FONT'S DEFINITION------------------
 font = game.font.SysFont("arialblack", 18)
-#--------------------COLOR DEFINITION------------------
+#--------------------COLOR DEFINITION-------------------
 color = (246, 239, 232)
+#--------------------BACKGROUNDIMAGE DEFINITION---------
+background_image = game.image.load(r"C:\Users\ADDUSER\Pictures\WPP\LINUXC_wallpaper.jpg").convert()
 
 def ProcessPy(archivo):
     #copia
@@ -35,7 +37,7 @@ def UpText (mouse, text):
 
 run = True
 while run:
-    screen.fill((17, 21, 13))
+    screen.blit(background_image, (0, 0))
 
 
     option1 = draw_T("VIRTUAL ASISTENT", font,color, Screen_Width//2, Screen_Eigth//2+50)
@@ -69,7 +71,8 @@ while run:
                         print("Sistema operativo no compatible")
                 if (UpText(mouseP,option3)): 
                     print("3")
-                    sopa()
+                    os.system("python .\Test.py")
+                    #sopa()
 
     game.display.update()
 game.quit()

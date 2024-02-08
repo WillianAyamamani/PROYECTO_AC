@@ -1,7 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from ProjectAC import CUE
 import json
 import webbrowser
+#CONECTION::CHATGPT
 
+#TEST::FUNTION::ASISTENT
 app = Flask(__name__)
 #::::::::::::::::::::::::::::::#
 #ESTRUCTURA:
@@ -32,6 +35,16 @@ app = Flask(__name__)
 #HOME == PAGINA PRINCIPAL
 @app.route("/")
 def HOME():
+    #Creacion de nuevas preguntas
+    prompt = 'RESPUESTA LIMPIA, NO EXPLIQUES NADA, Genera un formato json dame 10 preguntas (sin signos de interregacion y sin mayusculas, no pongas la tilde de las palabras) acerca de arquitectura de computadoras con 4 alternativas y su alternativa correcta, (es OBLIGATORIO que este sin signos de interregacion y sin mayusculas, no pongas la tilde de las palabras, en toda la RESPUESTA"), Example: "{    "preguntas": [        {            "pregunta": "que es la arquitectura de computadoras?",            "alternativas": ["conjunto de componentes de hardware y software que conforman un sistema de computación", "conjunto de programas de computadora", "conjunto de lenguajes de programación", "conjunto de periféricos de entrada y salida"],            "alternativaCorrecta": "conjunto de componentes de hardware y software que conforman un sistema de computacion"        },        {            "pregunta": "que es la unidad central de procesamiento (cpu)?",            "alternativas": ["memoria de almacenamiento interno", "dispositivo de entrada de información", "dispositivo de salida de información", "componente principal que realiza las operaciones y controla el funcionamiento del sistema"],            "alternativaCorrecta": "componente principal que realiza las operaciones y controla el funcionamiento del sistema"},"'
+
+    question=CUE(prompt)
+    print(question)
+    que = json.loads(question)
+    
+    with open ('prueba.json','w') as page:
+        json.dump(que, page, indent = 6) 
+
     return render_template('index.html')
 
 #USER == PERFIL DEL USUARIO
@@ -42,34 +55,24 @@ def PERFIL():
 #ASISTENT == CONOCIMIENTO DEL PROGRAMA
 @app.route("/ASISTENT")
 def ABOUT():
-    return render_template('about.html')
+    return render_template('Asistente.html')
 
 #EXAMEM == DESICION DEL TEST
 
 @app.route("/examen")
 def TEST():
-    preguntas_data = {
-        "preguntas": [
-            {
-                "texto": "¿Cuál es el primer científico?",
-                "alternativas": ["Aristóteles", "Galileo Galilei", "Isaac Newton", "Arquímedes"]
-            },
-            {
-                "texto": "Otra pregunta",
-                "alternativas": ["Opción 1", "Opción 2", "Opción 3"]
-            },
-            {
-                "texto": "Y otra más",
-                "alternativas": ["Respuesta A", "Respuesta B", "Respuesta C"]
-            }
-        ]
-    }
+    #  :::FALTA:::
+    with open('prueba.json', 'r', encoding = 'utf-8') as file:
+        datos = json.load(file)
+    preguntas = datos.get("preguntas",[])
+    total = datos.get("total")
+    print(total)
+    #preguntas = json.get_json('prueba.json')
+    #preguntas = {"preguntas": [{"texto": generated_json_str, "alternativas": []}]}
 
-    # Parse the JSON data
-    json_data = json.dumps(preguntas_data)
-    preguntas = json.loads(json_data)
-
-    return render_template('examen.html', preguntas=preguntas)
+    return render_template('examen.html', preguntas=preguntas, total = total)
+    #   :::**:::
+    #return render_template('index.html')
 
 if __name__ == '__main__':
     webbrowser.open_new('http://127.0.0.1:5000/')

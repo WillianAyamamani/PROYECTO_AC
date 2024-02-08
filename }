@@ -28,7 +28,11 @@
     var enunciado = document.getElementById("enunciado");
     var number = -1;
     var alternativas = ["uno", "dos", "tres", "cuatro"];
+
+
     var preguntas = {{preguntas | tojson | safe}};
+    console.log("MESSI");
+    console.log(preguntas);
     question();
     // Definir la función question
     function question() {
@@ -43,37 +47,37 @@
         }
     }
     function progresst(){
+        console.log(aciertos);
+        console.log(len);
+        console.log(Math.round((aciertos/len)*100));
         let cir = document.querySelector(".circular"), progress = document.querySelector("#progress");
-        let progressstart = 0, progressend = Math.round((aciertos/10)*100), speed = 10;
-        console.log(progressend);
+        let progressstart = 0, progressend = Math.round((aciertos/len)*100), speed = 10;
         let progressA = setInterval(() => {
-
-            if(progressstart == progressend)
-              clearInterval(progressA);
-            else
-              progressstart ++;
+            progressstart ++;
             progress.textContent = `${progressstart}%`
             cir.style.background = `conic-gradient(#2a83e8 ${progressstart*3.6}deg, #e3e3e3 0deg)`
 
-            
+            if(progressstart == progressend){
+                clearInterval(progressA);
+            }
         }, speed); 
     }
 function reconocer(eleccion) {
-    console.log(preguntas[number].alternativaCorrecta);
-    if (document.getElementById(alternativas[eleccion]).textContent == preguntas[number].alternativaCorrecta)
+    console.log(number);
+    console.log(len);
+    console.log(document.getElementById(alternativas[eleccion]).textContent );
+    console.log(preguntas[number].alternativa_correcta);
+    if (document.getElementById(alternativas[eleccion]).textContent == preguntas[number].alternativa_correcta) 
             aciertos++;
-    console.log(aciertos);
-
-    if(number == 9){
+    if(number == 10){
         let cue = document.getElementById("cuestionario");
         let con = document.getElementById("progreso");
         con.style.display = "flex";
         cue.style.display = "none";
-        progresst();
     }
-    else
-        question();     
-}
+        progresst();
+        question();
+    }
     window.reconocer = reconocer;
 
 </script>

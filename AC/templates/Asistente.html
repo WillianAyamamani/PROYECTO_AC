@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Recognition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .mic-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>	
+    <div id = "Contenido">
+			<div id = "Perfil">
+				<img src = "{{url_for('static', filename="img/icono.png")}}">
+			</div>
+			<div id = "Consulta">
+				<div id = "Historial">
+					<div id = "Seccion">
+						<div id = "question">
+							<h1>MESSI :: KAISER</h1>
+							<h2>YO:: {{prueba}}</h2>
+						</div>
+						<div id = "respuesta">
+							<p>Krono::{{resp}}</p>
+						</div>
+					</div>
+
+				</div>
+				<div id = "Ingreso">
+            <form action="/Asistente" method="post">
+                <div>
+                    <!-- Campo de texto para escribir la pregunta -->
+                    <input type="text" name="pregunta" id="transcription">
+                    <!-- Botón de micrófono para activar el reconocimiento de voz -->
+                    <button type="button" id="mic-button" class="mic-button"><i class="fa-solid fa-microphone"></i></button>
+                </div>
+                <div>
+                    <!-- Botón para enviar la pregunta -->
+                    <button type="submit" id="Enviar">Enviar</button>
+                </div>
+            </form>
+				</div>
+			</div>
+		</div>
+    <script>
+        const micButton = document.getElementById('mic-button');
+        const transcriptionOutput = document.getElementById('transcription');
+        let isRecording = false;
+        let recognition;
+
+        micButton.addEventListener('click', () => {
+            if (!isRecording) {
+                startRecording();
+            } else {
+                stopRecording();
+            }
+        });
+
+        function startRecording() {
+            isRecording = true;
+            micButton.innerHTML = '<i class="fas fa-stop"></i>'; // Cambia el icono a "Stop"
+            recognition = new webkitSpeechRecognition();
+            recognition.lang = 'es-ES';
+            recognition.onresult = (event) => {
+                const speechToText = event.results[0][0].transcript;
+                transcriptionOutput.value += speechToText + '\n';
+            };
+            recognition.start();
+        }
+
+        function stopRecording() {
+            isRecording = false;
+            micButton.innerHTML = '<i class="fas fa-microphone"></i>'; // Cambia el icono a "Mic"
+            if (recognition) {
+                recognition.stop();
+            }
+        }
+    </script>
+</body>
+</html>
+

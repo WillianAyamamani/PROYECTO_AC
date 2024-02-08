@@ -34,3 +34,38 @@ button:active{
 h3{
 	color: #fff;
 }
+.progreso{
+	display:none;
+	width:420px;
+	padding: 50px 0;
+	border-radius:8px;
+	background: #fff;
+	row-gap: 30px;
+	flex-direction: column;
+	align-items: center;
+}
+.circular{
+	position:relative;
+	height:250px;
+	width: 250px;
+	border-radius: 50%;
+	background:conic-gradient(#2a83e8 3.6deg, #e3e3e3 0deg);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.circular::before{
+	content: "";
+	position: absolute;
+	height: 210px;
+	width: 210px;
+	border-radius: 50%;
+	background-color: #fff;
+}
+#progress{
+	position: relative;
+	font-size: 40px;
+	font-weight:600;
+	color: #2a83e8;
+}
+
