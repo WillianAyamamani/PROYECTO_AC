@@ -1,104 +1,104 @@
 {
       "preguntas": [
             {
-                  "pregunta": "que es la arquitectura de computadoras?",
+                  "pregunta": "que es la memoria cache?",
                   "alternativas": [
-                        "conjunto de componentes de hardware y software que conforman un sistema de computacion",
+                        "unidad de almacenamiento externa",
+                        "dispositivo de entrada de informaci\u00f3n",
+                        "dispositivo de salida de informaci\u00f3n",
+                        "memoria de acceso r\u00e1pido que almacena datos temporalmente para acelerar el rendimiento del sistema"
+                  ],
+                  "alternativaCorrecta": "memoria de acceso rapido que almacena datos temporalmente para acelerar el rendimiento del sistema"
+            },
+            {
+                  "pregunta": "que es el lenguaje de programacion?",
+                  "alternativas": [
+                        "conjunto de componentes de hardware",
                         "conjunto de programas de computadora",
-                        "conjunto de lenguajes de programacion",
-                        "conjunto de perifericos de entrada y salida"
-                  ],
-                  "alternativaCorrecta": "conjunto de componentes de hardware y software que conforman un sistema de computacion"
-            },
-            {
-                  "pregunta": "que es la unidad central de procesamiento (cpu)?",
-                  "alternativas": [
-                        "memoria de almacenamiento interno",
-                        "dispositivo de entrada de informacion",
-                        "dispositivo de salida de informacion",
-                        "componente principal que realiza las operaciones y controla el funcionamiento del sistema"
-                  ],
-                  "alternativaCorrecta": "componente principal que realiza las operaciones y controla el funcionamiento del sistema"
-            },
-            {
-                  "pregunta": "que es una memoria cache?",
-                  "alternativas": [
-                        "dispositivo de entrada de informacion",
-                        "pequena memoria mas rapida y cercana a la cpu",
-                        "componente principal que realiza las operaciones y controla el funcionamiento del sistema",
-                        "conjunto de componentes de hardware y software que conforman un sistema de computacion"
-                  ],
-                  "alternativaCorrecta": "pequena memoria mas rapida y cercana a la cpu"
-            },
-            {
-                  "pregunta": "que es el bus de datos?",
-                  "alternativas": [
-                        "dispositivo de salida de informacion",
-                        "dispositivo de entrada de informacion",
-                        "conjunto de lineas de comunicacion que transmiten datos entre los componentes de la computadora",
-                        "componente principal que realiza las operaciones y controla el funcionamiento del sistema"
-                  ],
-                  "alternativaCorrecta": "conjunto de lineas de comunicacion que transmiten datos entre los componentes de la computadora"
-            },
-            {
-                  "pregunta": "que es una instruccion de maquina?",
-                  "alternativas": [
                         "conjunto de perifericos de entrada y salida",
-                        "secuencia de pasos que la cpu puede ejecutar",
-                        "dispositivo de salida de informacion",
-                        "memoria de almacenamiento interno"
+                        "conjunto de instrucciones que se utilizan para comunicarse con una computadora"
                   ],
-                  "alternativaCorrecta": "secuencia de pasos que la cpu puede ejecutar"
+                  "alternativaCorrecta": "conjunto de instrucciones que se utilizan para comunicarse con una computadora"
             },
             {
-                  "pregunta": "que es el lenguaje de maquina?",
+                  "pregunta": "que es una placa madre?",
                   "alternativas": [
-                        "memoria de almacenamiento interno",
-                        "dispositivo de entrada de informacion",
-                        "dispositivo de salida de informacion",
-                        "lenguaje de bajo nivel que usa instrucciones de maquina"
-                  ],
-                  "alternativaCorrecta": "lenguaje de bajo nivel que usa instrucciones de maquina"
-            },
-            {
-                  "pregunta": "que es una interrupcion?",
-                  "alternativas": [
-                        "conjunto de componentes de hardware y software que conforman un sistema de computacion",
-                        "evento que puede modificar el flujo normal de ejecucion de un programa",
+                        "dispositivo de entrada de informaci\u00f3n",
+                        "dispositivo de salida de informaci\u00f3n",
                         "conjunto de programas de computadora",
-                        "conjunto de lenguajes de programacion"
+                        "placa de circuito impreso que contiene los componentes principales de una computadora"
                   ],
-                  "alternativaCorrecta": "evento que puede modificar el flujo normal de ejecucion de un programa"
+                  "alternativaCorrecta": "placa de circuito impreso que contiene los componentes principales de una computadora"
             },
             {
-                  "pregunta": "que es el almacenamiento magnetico?",
+                  "pregunta": "quienes son los dispositivos de entrada?",
                   "alternativas": [
-                        "conjunto de perifericos de entrada y salida",
-                        "tecnologia de almacenamiento que utiliza campos magneticos para almacenar y recuperar datos",
-                        "dispositivo de salida de informacion",
-                        "memoria de almacenamiento interno"
+                        "componentes de hardware y software",
+                        "componentes externos de la computadora",
+                        "dispositivos de salida de informaci\u00f3n",
+                        "dispositivos que permiten introducir datos o comandos en una computadora"
                   ],
-                  "alternativaCorrecta": "tecnologia de almacenamiento que utiliza campos magneticos para almacenar y recuperar datos"
+                  "alternativaCorrecta": "dispositivos que permiten introducir datos o comandos en una computadora"
+            },
+            {
+                  "pregunta": "quienes son los dispositivos de salida?",
+                  "alternativas": [
+                        "componentes externos de la computadora",
+                        "dispositivos de entrada de informaci\u00f3n",
+                        "conjunto de programas de computadora",
+                        "dispositivos que permiten obtener informaci\u00f3n procesada y mostrada por la computadora"
+                  ],
+                  "alternativaCorrecta": "dispositivos que permiten obtener informacion procesada y mostrada por la computadora"
             },
             {
                   "pregunta": "que es el sistema operativo?",
                   "alternativas": [
-                        "memoria de almacenamiento interno",
-                        "dispositivo de entrada de informacion",
-                        "software que administra y coordina el uso de los recursos de hardware y software en una computadora",
-                        "dispositivo de salida de informacion"
+                        "perifericos de entrada y salida",
+                        "conjunto de programas de computadora",
+                        "componentes de hardware y software",
+                        "conjunto de software que administra los recursos de hardware y permite la interaccion con el usuario"
                   ],
-                  "alternativaCorrecta": "software que administra y coordina el uso de los recursos de hardware y software en una computadora"
+                  "alternativaCorrecta": "conjunto de software que administra los recursos de hardware y permite la interaccion con el usuario"
             },
             {
-                  "pregunta": "que es el registro?",
+                  "pregunta": "que es el disco duro?",
                   "alternativas": [
-                        "conjunto de componentes de hardware y software que conforman un sistema de computacion",
-                        "pequena unidad de almacenamiento dentro de la cpu utilizada para almacenar datos e instrucciones temporales",
-                        "conjunto de programas de computadora",
-                        "conjunto de lenguajes de programacion"
+                        "unidad de almacenamiento externa",
+                        "dispositivo de entrada de informaci\u00f3n",
+                        "dispositivo de salida de informaci\u00f3n",
+                        "unidad de almacenamiento interno no volatil que guarda los datos de forma permanente"
                   ],
-                  "alternativaCorrecta": "pequena unidad de almacenamiento dentro de la cpu utilizada para almacenar datos e instrucciones temporales"
+                  "alternativaCorrecta": "unidad de almacenamiento interno no volatil que guarda los datos de forma permanente"
+            },
+            {
+                  "pregunta": "que es el bus de datos?",
+                  "alternativas": [
+                        "conjunto de instrucciones",
+                        "conjunto de cables o pistas electronicas",
+                        "conjunto de componentes de hardware",
+                        "unidad de almacenamiento externa"
+                  ],
+                  "alternativaCorrecta": "conjunto de cables o pistas electronicas"
+            },
+            {
+                  "pregunta": "que es el software de aplicacion?",
+                  "alternativas": [
+                        "conjunto de instrucciones",
+                        "conjunto de cables o pistas electronicas",
+                        "conjunto de programas de computadora",
+                        "unidad de almacenamiento externa"
+                  ],
+                  "alternativaCorrecta": "conjunto de programas de computadora"
+            },
+            {
+                  "pregunta": "que es el sistema de numeracion binario?",
+                  "alternativas": [
+                        "sistema de numeracion decimal",
+                        "sistema de numeracion octal",
+                        "sistema de numeracion hexadecimal",
+                        "sistema de numeracion que utiliza solo los digitos 0 y 1"
+                  ],
+                  "alternativaCorrecta": "sistema de numeracion que utiliza solo los digitos 0 y 1"
             }
       ]
 }

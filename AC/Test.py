@@ -55,7 +55,7 @@ def PERFIL():
 #ASISTENT == CONOCIMIENTO DEL PROGRAMA
 @app.route("/ASISTENT")
 def ABOUT():
-    return render_template('about.html')
+    return render_template('Asistente.html')
 
 #EXAMEM == DESICION DEL TEST
 

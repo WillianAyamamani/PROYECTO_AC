@@ -1,2 +1,5 @@
 *.wav
+AC/__pycache__/
+*/__pycache__/
 *.pyc
+*/prueba.json
