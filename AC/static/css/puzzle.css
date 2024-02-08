@@ -11,7 +11,7 @@ img{
 	background-color: var(--background);
 	gap: 20px;
 }
-#test,#profile{
+.contorno{
 	position: relative;
 	left: 0px;
 	width: 300px;
@@ -24,13 +24,13 @@ img{
 	outline:1px solid var(--background);
 	overflow: hidden;
 }
-#test:hover,#profile:hover{
+.contorno:hover{
 	cursor: pointer;
 	background: rgb(255, 195, 0);
 	transform: scale(1.15);
 }
 
-#test:hover ~ #test,#profile:hover ~ #profile{
+.contorno:hover ~.contorno{
 	font-weight: bold;
 	cursor: pointer;
 	transform: translateX(22px);
@@ -40,4 +40,7 @@ img{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+#finish{
+	display: none;
 }

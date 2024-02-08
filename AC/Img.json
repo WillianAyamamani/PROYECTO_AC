@@ -1,0 +1,28 @@
+{"preguntas":[
+  {
+    "pregunta": "¿Cuál de las siguientes afirmaciones describe mejor el concepto de 'arquitectura de computadoras'?",
+    "opciones": ["1.jpg","2.jpg","3.jpg"],
+    "respuesta_correcta": "b"
+  },
+  {
+    "pregunta": "¿Qué elemento de la arquitectura de computadoras se encarga de realizar operaciones aritméticas y lógicas?",
+    "opciones": ["4.jpg","5.jpg","6.jpg"],
+    "respuesta_correcta": "b"
+  },
+  {
+    "pregunta": "¿Cuál es el propósito principal del registro de instrucciones en una CPU?",
+    "opciones": ["7.jpg","8.jpg","9.jpg"],
+    "respuesta_correcta": "b"
+  },
+  {
+    "pregunta": "¿Qué tipo de memoria es más rápida pero también más costosa de producir en comparación con la memoria principal?",
+    "opciones": ["10.jpg","6.jpg","11.jpg"],
+    "respuesta_correcta": "b"
+  },
+  {
+    "pregunta": "¿Qué componente de hardware se encarga de gestionar el flujo de datos entre la CPU y otros dispositivos de la computadora?",
+    "opciones": ["12.jpg","13.jpg","6.jpg"],
+    "respuesta_correcta": "a"
+  }
+]
+}

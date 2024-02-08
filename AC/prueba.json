@@ -1,48 +1,104 @@
 {
       "preguntas": [
             {
-                  "pregunta": "que es un bit?",
+                  "pregunta": "que es la arquitectura de computadoras?",
                   "alternativas": [
-                        "1",
-                        "0"
+                        "conjunto de componentes de hardware y software que conforman un sistema de computacion",
+                        "conjunto de programas de computadora",
+                        "conjunto de lenguajes de programacion",
+                        "conjunto de perifericos de entrada y salida"
                   ],
-                  "alternativa_correcta": "0"
+                  "alternativaCorrecta": "conjunto de componentes de hardware y software que conforman un sistema de computacion"
             },
             {
-                  "pregunta": "que tipo de memoria es volatil?",
+                  "pregunta": "que es la unidad central de procesamiento (cpu)?",
                   "alternativas": [
-                        "rom",
-                        "ram",
-                        "rom y ram"
+                        "memoria de almacenamiento interno",
+                        "dispositivo de entrada de informacion",
+                        "dispositivo de salida de informacion",
+                        "componente principal que realiza las operaciones y controla el funcionamiento del sistema"
                   ],
-                  "alternativa_correcta": "ram"
+                  "alternativaCorrecta": "componente principal que realiza las operaciones y controla el funcionamiento del sistema"
             },
             {
-                  "pregunta": "que es el procesador?",
+                  "pregunta": "que es una memoria cache?",
                   "alternativas": [
-                        "la tarjeta madre",
-                        "el cerebro de la computadora",
-                        "el monitor"
+                        "dispositivo de entrada de informacion",
+                        "pequena memoria mas rapida y cercana a la cpu",
+                        "componente principal que realiza las operaciones y controla el funcionamiento del sistema",
+                        "conjunto de componentes de hardware y software que conforman un sistema de computacion"
                   ],
-                  "alternativa_correcta": "el cerebro de la computadora"
+                  "alternativaCorrecta": "pequena memoria mas rapida y cercana a la cpu"
             },
             {
-                  "pregunta": "que es la cache?",
+                  "pregunta": "que es el bus de datos?",
                   "alternativas": [
-                        "una unidad de almacenamiento principal",
-                        "una unidad de almacenamiento secundario",
-                        "una memoria temporal"
+                        "dispositivo de salida de informacion",
+                        "dispositivo de entrada de informacion",
+                        "conjunto de lineas de comunicacion que transmiten datos entre los componentes de la computadora",
+                        "componente principal que realiza las operaciones y controla el funcionamiento del sistema"
                   ],
-                  "alternativa_correcta": "una memoria temporal"
+                  "alternativaCorrecta": "conjunto de lineas de comunicacion que transmiten datos entre los componentes de la computadora"
             },
             {
-                  "pregunta": "que es un microprocesador?",
+                  "pregunta": "que es una instruccion de maquina?",
                   "alternativas": [
-                        "un programa de computadora",
-                        "una parte de la tarjeta madre",
-                        "un circuito integrado"
+                        "conjunto de perifericos de entrada y salida",
+                        "secuencia de pasos que la cpu puede ejecutar",
+                        "dispositivo de salida de informacion",
+                        "memoria de almacenamiento interno"
                   ],
-                  "alternativa_correcta": "un circuito integrado"
+                  "alternativaCorrecta": "secuencia de pasos que la cpu puede ejecutar"
+            },
+            {
+                  "pregunta": "que es el lenguaje de maquina?",
+                  "alternativas": [
+                        "memoria de almacenamiento interno",
+                        "dispositivo de entrada de informacion",
+                        "dispositivo de salida de informacion",
+                        "lenguaje de bajo nivel que usa instrucciones de maquina"
+                  ],
+                  "alternativaCorrecta": "lenguaje de bajo nivel que usa instrucciones de maquina"
+            },
+            {
+                  "pregunta": "que es una interrupcion?",
+                  "alternativas": [
+                        "conjunto de componentes de hardware y software que conforman un sistema de computacion",
+                        "evento que puede modificar el flujo normal de ejecucion de un programa",
+                        "conjunto de programas de computadora",
+                        "conjunto de lenguajes de programacion"
+                  ],
+                  "alternativaCorrecta": "evento que puede modificar el flujo normal de ejecucion de un programa"
+            },
+            {
+                  "pregunta": "que es el almacenamiento magnetico?",
+                  "alternativas": [
+                        "conjunto de perifericos de entrada y salida",
+                        "tecnologia de almacenamiento que utiliza campos magneticos para almacenar y recuperar datos",
+                        "dispositivo de salida de informacion",
+                        "memoria de almacenamiento interno"
+                  ],
+                  "alternativaCorrecta": "tecnologia de almacenamiento que utiliza campos magneticos para almacenar y recuperar datos"
+            },
+            {
+                  "pregunta": "que es el sistema operativo?",
+                  "alternativas": [
+                        "memoria de almacenamiento interno",
+                        "dispositivo de entrada de informacion",
+                        "software que administra y coordina el uso de los recursos de hardware y software en una computadora",
+                        "dispositivo de salida de informacion"
+                  ],
+                  "alternativaCorrecta": "software que administra y coordina el uso de los recursos de hardware y software en una computadora"
+            },
+            {
+                  "pregunta": "que es el registro?",
+                  "alternativas": [
+                        "conjunto de componentes de hardware y software que conforman un sistema de computacion",
+                        "pequena unidad de almacenamiento dentro de la cpu utilizada para almacenar datos e instrucciones temporales",
+                        "conjunto de programas de computadora",
+                        "conjunto de lenguajes de programacion"
+                  ],
+                  "alternativaCorrecta": "pequena unidad de almacenamiento dentro de la cpu utilizada para almacenar datos e instrucciones temporales"
             }
       ]
 }
