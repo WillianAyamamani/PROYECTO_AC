@@ -1,71 +1,71 @@
-import pygame as game
-import os
-import platform
-import sys
 from sopa import main as sopa
+import pygame as game
+import subprocess
+import sys
 
 game.init()
 
 Screen_Width = 1000
 Screen_Eigth = 500
 
-screen = game.display.set_mode((Screen_Width,Screen_Eigth))
+screen = game.display.set_mode((Screen_Width, Screen_Eigth))
 game.display.set_caption("MENU MESSI")
-#--------------------FONT'S DEFINITION------------------
+
 font = game.font.SysFont("arialblack", 18)
-#--------------------COLOR DEFINITION-------------------
 color = (246, 239, 232)
-#--------------------BACKGROUNDIMAGE DEFINITION---------
 background_image = game.image.load(r"C:\Users\ADDUSER\Pictures\WPP\LINUXC_wallpaper.jpg").convert()
 
-def ProcessPy(archivo):
-    #copia
-    activate_command = ".\\HM\\ENV\\Scripts\\activate"
-    script_command = ["python", archivo]
-    combined_command = f"{activate_command} & {' '.join(script_command)}"
-    subprocess.run(combined_command, shell=True)
-    #fin
+# Ruta completa a HMV2.py
+HMV2_path = r"C:\Users\ADDUSER\Downloads\PROYECTO_AC\AC\HM\HMV2.py"
+# Rutas completas a los otros archivos
+ProjectAC_path = r"C:\Users\ADDUSER\Downloads\PROYECTO_AC\AC\ProjectAC.py"
+Test_path = r"C:\Users\ADDUSER\Downloads\PROYECTO_AC\AC\Test.py"
 
-def draw_T (text, font, color, x, y):
+# Función para iniciar HMV2.py como un subproceso
+def start_HMV2():
+    subprocess.Popen([sys.executable, HMV2_path])
+
+def draw_T(text, font, color, x, y):
     img = font.render(text, True, color)
     text_rect = img.get_rect(center=(x, y))
-    screen.blit(img, (x,y))
+    screen.blit(img, text_rect)
     return text_rect
 
-def UpText (mouse, text):
+def UpText(mouse, text):
     return text.collidepoint(mouse)
 
-                 
-#os.system("python .\HM\HMV2.py")
 print("KDA")
+
+# Inicia HMV2.py como un subproceso
+start_HMV2()
+
 run = True
 while run:
     screen.blit(background_image, (0, 0))
 
-
-    option1 = draw_T("VIRTUAL ASISTENT", font,color, Screen_Width//2, Screen_Eigth//2+50)
-    option2 = draw_T("GAMES", font,color, Screen_Width//2, Screen_Eigth//2)
-    option3 = draw_T("TEST", font,color, Screen_Width//2, Screen_Eigth//2-50)
+    option1 = draw_T("VIRTUAL ASISTENT", font, color, Screen_Width // 2, Screen_Eigth // 2 + 50)
+    option2 = draw_T("GAMES", font, color, Screen_Width // 2, Screen_Eigth // 2)
+    option3 = draw_T("TEST", font, color, Screen_Width // 2, Screen_Eigth // 2 - 50)
 
     mouseP = game.mouse.get_pos()
 
-
-
-    for event  in game.event.get():
+    for event in game.event.get():
         if event.type == game.QUIT:
             run = False
         elif event.type == game.MOUSEBUTTONDOWN:
             if event.button == 1:
-                if (UpText(mouseP,option1)):
+                if UpText(mouseP, option1):
                     print("1")
-                    os.system("python .\ProjectAC.py")
-                if (UpText(mouseP,option2)):
-                    print("2") 
-                    sopa()                   
-                if (UpText(mouseP,option3)): 
+                    subprocess.Popen([sys.executable, ProjectAC_path])
+                if UpText(mouseP, option2):
+                    print("2")
+                    sopa()
+                    # Coloca aquí la acción correspondiente al menú
+                if UpText(mouseP, option3): 
                     print("3")
-                    os.system("python .\Test.py")
+                    subprocess.Popen([sys.executable, Test_path])
 
     game.display.update()
+
 game.quit()
 
