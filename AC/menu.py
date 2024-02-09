@@ -1,4 +1,6 @@
 from sopa import main as sopa
+import os
+import platform
 import pygame as game
 import subprocess
 import sys
@@ -54,16 +56,25 @@ while run:
             run = False
         elif event.type == game.MOUSEBUTTONDOWN:
             if event.button == 1:
-                if UpText(mouseP, option1):
+                if (UpText(mouseP,option1)):
                     print("1")
-                    subprocess.Popen([sys.executable, ProjectAC_path])
-                if UpText(mouseP, option2):
-                    print("2")
-                    sopa()
-                    # Coloca aquí la acción correspondiente al menú
-                if UpText(mouseP, option3): 
+                    if platform.system() == 'Linux':
+                        os.system("python ./ProjectAC.py")
+                    elif platform.system() == 'Windows':
+                        os.system("python .\ProjectAC.py")
+                    else:
+                        print("Sistema operativo no compatible")
+                if (UpText(mouseP,option2)):
+                    print("2") 
+                    sopa()                   
+                if (UpText(mouseP,option3)): 
                     print("3")
-                    subprocess.Popen([sys.executable, Test_path])
+                    if platform.system() == 'Linux':
+                        os.system("python ./Test.py")
+                    elif platform.system() == 'Windows':
+                        os.system("python .\Test.py")
+                    else:
+                        print("Sistema operativo no compatible")
 
     game.display.update()
 
